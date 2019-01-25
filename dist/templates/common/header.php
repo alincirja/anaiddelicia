@@ -40,7 +40,6 @@
                                 <li><a href="#">Sfaturi Culinare</a></li>
                                 <li><a href="#">Generare Meniu</a></li>
                                 <li><a href="#">Topuri</a></li>
-                                <li><a href="#">De Post</a></li>
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </nav>
