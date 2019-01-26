@@ -11,6 +11,10 @@ export const isMobile = () => {
     }
 };
 
-export const log = mes => {
-    console.log(mes);
-}
+export const spinner = (elem, action) => {
+    if (action === "start") {
+        $(elem).addClass("spinning").append("<div class='spinner fa-2x'><i class='fas fa-sync fa-spin'></i></div>");
+    } else if (action === "stop") {
+        $(elem).removeClass("spinning").find(".spinner").remove();
+    }
+};

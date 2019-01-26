@@ -20,5 +20,13 @@ class Database {
     public function executeQuery($query) {
         return mysqli_query($this->connect, $query);
     }
+
+    public function sendUserMsg($type, $msg) {
+        $message = new \stdClass();
+        $message->type = $type;
+        $message->msg = $msg;
+        $jsonMessage = json_encode($message);
+        echo $jsonMessage;
+    }
 }
 ?>

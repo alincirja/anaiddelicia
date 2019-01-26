@@ -1,6 +1,5 @@
 .site-header {
     border-bottom: 1px solid rgba($black, .1);
-    box-shadow: 0 3px 5px rgba($black, .15);
     background-color: rgba($white, .9);
     width: 100%;
     position: fixed;
@@ -80,6 +79,7 @@
         li {
             text-align: left;
             display: inline-block;
+            position: relative;
 
             a {
                 display: block;

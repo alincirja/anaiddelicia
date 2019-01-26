@@ -11,17 +11,18 @@
 <!-- END - CUSTOM PAGE HEAD ELEMENTS-->
 <?php
     require_once("templates/common/header.php");
-    require_once("templates/common/page-title.php");
 ?>
-    <section class="recipes-section">
+    <section id="main-content" class="content-page">
         <div class="container">
             <?php
-            include "inc/Action.php";
+            include "classes/Action.php";
             $object = new Action();
             $cats = $object->getData("categorie");
             foreach ($cats as $cat) {
-                echo $cat["id"] . " " . $cat["nume"];
+                echo $cat["id"] . " " . $cat["nume"] . "<br>";
             }
+            $single = $object->getDataById("categorie", 1);
+            echo $single["id"] . " " . $single["nume"];
             ?>
         </div>
     </section>

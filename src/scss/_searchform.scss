@@ -1,0 +1,36 @@
+.searchform {
+    position: absolute;
+    overflow: hidden;
+    width: 0;
+    top: 0;
+    right: 0;
+    transition: all .3s;
+    opacity: 0;
+
+    &.show {
+        width: 250px;
+        opacity: 1;
+    }
+
+    .form-control {
+        height: 28px;
+        padding: 0 12px;
+        font-size: 12px;
+        line-height: 1;
+        box-shadow: none;
+        outline: none;
+        border-color: $primary;
+    }
+
+    .search-submit {
+        height: 28px;
+        background-color: $primary;
+        color: $white;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: darken($primary, 5%);
+        }
+    }
+}

@@ -17,6 +17,15 @@ class Action extends Database {
             return $array;
         }
     }
+
+    public function getDataById($table, $id) {
+        $sql = "SELECT * FROM " . $table . " WHERE id='" . $id . "'";
+        $query = mysqli_query($this->connect, $sql);
+
+        if ($query->num_rows == 1) {
+            return $row = mysqli_fetch_assoc($query);
+        }
+    }
     
     /**
      * ACTION - CREATE

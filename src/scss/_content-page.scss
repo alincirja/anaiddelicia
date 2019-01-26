@@ -1,0 +1,11 @@
+.content-page {
+    padding: 70px 0;
+    margin: 99px 0 0;
+}
+
+@include media-breakpoint-down(md) {
+    .content-page {
+        padding: 35px 0;
+        margin: 66px 0 0;
+    }
+}

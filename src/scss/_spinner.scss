@@ -1,0 +1,19 @@
+.spinning {
+    position: relative;
+
+    .spinner {
+        position: absolute;
+        z-index: 99999;
+        background-color: rgba($primary, .75);
+        color: $white;
+        text-align: center;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
