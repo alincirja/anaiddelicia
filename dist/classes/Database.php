@@ -7,7 +7,7 @@ class Database {
     private $host = "localhost";
     private $username = "root";
     private $password = "";
-    private $database = "socialrecipe";
+    private $database = "anaiddelicia";
 
     function __construct() {
         $this->dbConnect();
