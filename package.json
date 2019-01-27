@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch",
-    "start": "webpack-dev-server -d --hot --config webpack.config.js --watch",
+    "build": "webpack",
+    "start": "webpack -d --config webpack.config.js --watch",
     "production": "NODE_ENV=production webpack"
   },
   "repository": "git@gitlab.com:nicknameDE/es6-sass-webpack-boilerplate.git",
