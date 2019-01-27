@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2019 at 03:49 PM
+-- Generation Time: Jan 27, 2019 at 07:34 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -25,36 +25,89 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorii`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE `categorii` (
-  `id` int(11) NOT NULL,
-  `id_parinte` int(11) NOT NULL,
-  `nume_cateorie` varchar(255) NOT NULL
+CREATE TABLE `categories` (
+  `id` int(50) NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `categorii`
---
-
-INSERT INTO `categorii` (`id`, `id_parinte`, `nume_cateorie`) VALUES
-(1, 0, 'salate');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `retete`
+-- Table structure for table `content_pages`
 --
 
-CREATE TABLE `retete` (
+CREATE TABLE `content_pages` (
+  `id` int(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `body` varchar(53000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cooking_tips`
+--
+
+CREATE TABLE `cooking_tips` (
+  `id` int(50) NOT NULL,
+  `id_user` int(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `body` varchar(53000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favorite_recipes`
+--
+
+CREATE TABLE `favorite_recipes` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `continut` text NOT NULL,
-  `imagini` varchar(255) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `nume_catgorie` varchar(50) NOT NULL
+  `id_user` int(50) NOT NULL,
+  `id_recipe` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `id` int(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `id_recipe` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipes`
+--
+
+CREATE TABLE `recipes` (
+  `id` int(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `body` varchar(65000) NOT NULL,
+  `id_user` int(50) NOT NULL,
+  `id_category` int(50) NOT NULL,
+  `id_region` int(50) NOT NULL,
+  `ingredient_quantity` text NOT NULL,
+  `de_post` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `regions`
+--
+
+CREATE TABLE `regions` (
+  `id` int(50) NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -64,11 +117,14 @@ CREATE TABLE `retete` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` int(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `register_date` date NOT NULL,
+  `sex` varchar(50) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `description` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -76,16 +132,52 @@ CREATE TABLE `users` (
 --
 
 --
--- Indexes for table `categorii`
+-- Indexes for table `categories`
 --
-ALTER TABLE `categorii`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `retete`
+-- Indexes for table `content_pages`
 --
-ALTER TABLE `retete`
+ALTER TABLE `content_pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cooking_tips`
+--
+ALTER TABLE `cooking_tips`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_users_cooking_tips` (`id_user`);
+
+--
+-- Indexes for table `favorite_recipes`
+--
+ALTER TABLE `favorite_recipes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_users_favorite_recipe` (`id_user`),
+  ADD KEY `fk_favorite_recipe_recipe` (`id_recipe`);
+
+--
+-- Indexes for table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_images_recipe` (`id_recipe`);
+
+--
+-- Indexes for table `recipes`
+--
+ALTER TABLE `recipes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_users_recipe` (`id_user`),
+  ADD KEY `fk_category_recipe` (`id_category`),
+  ADD KEY `fk_region_recipe` (`id_region`);
+
+--
+-- Indexes for table `regions`
+--
+ALTER TABLE `regions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -99,22 +191,83 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `categorii`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `categorii`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `categories`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `retete`
+-- AUTO_INCREMENT for table `content_pages`
 --
-ALTER TABLE `retete`
+ALTER TABLE `content_pages`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cooking_tips`
+--
+ALTER TABLE `cooking_tips`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `favorite_recipes`
+--
+ALTER TABLE `favorite_recipes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `recipes`
+--
+ALTER TABLE `recipes`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `regions`
+--
+ALTER TABLE `regions`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cooking_tips`
+--
+ALTER TABLE `cooking_tips`
+  ADD CONSTRAINT `fk_users_cooking_tips` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `favorite_recipes`
+--
+ALTER TABLE `favorite_recipes`
+  ADD CONSTRAINT `fk_favorite_recipe_recipe` FOREIGN KEY (`id_recipe`) REFERENCES `recipes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_users_favorite_recipe` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `fk_images_recipe` FOREIGN KEY (`id_recipe`) REFERENCES `recipes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `recipes`
+--
+ALTER TABLE `recipes`
+  ADD CONSTRAINT `fk_category_recipe` FOREIGN KEY (`id_category`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_region_recipe` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_users_recipe` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
