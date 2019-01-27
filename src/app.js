@@ -10,3 +10,9 @@ require('bootstrap/dist/js/bootstrap');
 require('@fortawesome/fontawesome-free/js/all');
 
 require('./js/navigation');
+
+/**
+ * AJAX FUNCTIONS
+ */
+require('./js/ajax/user/register');
+require('./js/ajax/user/login');

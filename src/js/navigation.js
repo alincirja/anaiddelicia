@@ -13,29 +13,40 @@ const fixNavigation = () => {
     }
 };
 
-const fixPageTitle = () => {
-    const headerHeight = $cache.menuContainer.outerHeight();
-    $cache.pageTitle.css("margin-top", headerHeight);
-};
-
 const toggleMenu = () => {
     if (util.isMobile()) {
         $cache.menuContainer.toggleClass("menu-collapsed");
     }
 };
 
+const toggleSearchForm = e => {
+    if ($(e.currentTarget).attr("class") === "searchformcontainer") {
+        e.preventDefault();
+        e.stopPropagation();
+        $cache.searchForm.addClass("show");
+        $cache.searchFormField.focus();
+    } else {
+        $cache.searchForm.removeClass("show");
+    }
+}
+
 /** Initializare cache - salvare elemente DOM */
 const initCache = () => {
+    $cache.body = $("body");
     $cache.toggleMenuBtn = $(".mobile-menu-trigger");
     $cache.menuContainer = $(".site-header");
     $cache.pageTitle = $(".page-title");
+    $cache.searchTrigger = $(".searchformcontainer");
+    $cache.searchForm = $(".searchform");
+    $cache.searchFormField = $cache.searchForm.find(".form-control");
 };
 
 /** Initializare evenimente */
 const initEvents = () => {
     $cache.toggleMenuBtn.on("click", toggleMenu);
+    $cache.searchTrigger.on("click", toggleSearchForm);
+    $cache.body.on("click", toggleSearchForm);
     $(window).on("load resize", fixNavigation);
-    $(window).on("load resize", fixPageTitle);
     $('[data-toggle="tooltip"]').tooltip();
 };
 
