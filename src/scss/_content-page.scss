@@ -1,6 +1,12 @@
 .content-page {
     padding: 70px 0;
     margin: 99px 0 0;
+
+    h1 {
+        font-size: 24px;
+        text-transform: uppercase;
+        margin: 5px 0; 
+    }
 }
 
 @include media-breakpoint-down(md) {

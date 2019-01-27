@@ -5,22 +5,24 @@ import * as util from "../../utils";
 
 const $cache = {};
 
-const register = () => {
-    const $form = $cache.registerForm;
+const login = () => {
+    const $form = $cache.loginForm;
 
     $form.on("submit", e => {
         e.preventDefault();
         util.spinner($form, "start");
         $form.find(".alert").remove();
         $.ajax({
-            url: "inc/scripts/user/register.php",
+            url: "inc/scripts/user/login.php",
             type: "POST",
             data: $form.serialize(),
             success: function(data) {
+                console.log(data);
                 const dataJSON = JSON.parse(data);
-                $form.append("<div class='alert alert-"+dataJSON.type+" mt-3'>"+dataJSON.msg+"</div>");
                 if (dataJSON.type === "success") {
-                    $form[0].reset();
+                    window.location.replace(dataJSON.msg);
+                } else {
+                    $form.find(".modal-body").append("<div class='alert alert-"+dataJSON.type+"'>"+dataJSON.msg+"</div>");
                 }
                 util.spinner($form, "stop");
             },
@@ -34,12 +36,12 @@ const register = () => {
 
 /** Initializare cache - salvare elemente DOM */
 const initCache = () => {
-    $cache.registerForm = $("#formRegister");
+    $cache.loginForm = $("#formLogin");
 };
 
 /** Initializare evenimente */
 const initEvents = () => {
-    register();
+    login();
 };
 
 /** Call Initialization */

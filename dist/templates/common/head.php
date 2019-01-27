@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "inc/global-variables.php";
 ?>
 <!DOCTYPE html>

@@ -15,3 +15,4 @@ require('./js/navigation');
  * AJAX FUNCTIONS
  */
 require('./js/ajax/user/register');
+require('./js/ajax/user/login');

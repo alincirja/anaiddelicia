@@ -17,12 +17,12 @@
             <?php
             include "classes/Action.php";
             $object = new Action();
-            $cats = $object->getData("categorie");
+            $cats = $object->getData("categorii");
             foreach ($cats as $cat) {
-                echo $cat["id"] . " " . $cat["nume"] . "<br>";
+                echo $cat["id"] . " " . $cat["nume_cateorie"] . "<br>";
             }
-            $single = $object->getDataById("categorie", 1);
-            echo $single["id"] . " " . $single["nume"];
+            $single = $object->getDataById("categorii", 1);
+            echo $single["id"] . " " . $single["nume_cateorie"];
             ?>
         </div>
     </section>

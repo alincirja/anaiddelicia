@@ -12,16 +12,16 @@
                 <input type="hidden" name="action" value="userLogin">
                 <div class="modal-body">   
                     <div class="form-group">
-                        <label for="">Email</label>
+                        <label for="loginEmail">Email</label>
                         <input type="email" name="loginEmail" id="loginEmail" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="">Parola</label>
+                        <label for="loginPass">Parola</label>
                         <input type="password" name="loginPass" id="loginPass" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Cont Nou</button>
+                    <a href="<?php echo ROOT_PATH; ?>register" class="btn">Cont Nou</a>
                     <button type="submit" class="btn btn-primary">Autentifica-ma</button>
                 </div>
             </form>
