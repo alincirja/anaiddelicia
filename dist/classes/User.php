@@ -4,6 +4,9 @@ include "Database.php";
 class User extends Database {
     private $table = "users";
 
+    /**
+     * GET USER BY PROVIDED ID
+     */
     public function getById($id) {
         $sql = "SELECT * FROM " . $this->table . " WHERE id='" . $id . "'";
         $query = mysqli_query($this->connect, $sql);
@@ -13,6 +16,9 @@ class User extends Database {
         }
     }
 
+    /**
+     * REGISTER NEW USER
+     */
     public function register($info) {
         //Check for empty fields
         if (empty($info["name"]) || empty($info["email"] || empty($info["password"]))) {
@@ -40,7 +46,7 @@ class User extends Database {
                         $info["hashedPass"] = password_hash($info["password"], PASSWORD_DEFAULT);
                         
                         //Insert user
-                        $sql = "INSERT INTO users (name, email, password) VALUES ('" . $info["name"] . "', '" . $info["email"] . "', '" . $info["hashedPass"] . "')";
+                        $sql = "INSERT INTO " . $this->table . " (name, email, password) VALUES ('" . $info["name"] . "', '" . $info["email"] . "', '" . $info["hashedPass"] . "')";
                         $result = mysqli_query($this->connect, $sql);
                         if ($result) {
                             $this->sendUserMsg("success", "Contul a fost creat.");
@@ -55,12 +61,15 @@ class User extends Database {
         }   
     }
 
+    /**
+     * LOGIN USER
+     */
     public function login($login) {
         if (empty($login["email"]) || empty($login["password"])) {
             $this->sendUserMsg("danger", "Ambele campuri sunt obligatorii");
             exit();
         } else {
-            $sql = "SELECT * FROM users WHERE email='" . $login["email"] . "'";
+            $sql = "SELECT * FROM " . $this->table . " WHERE email='" . $login["email"] . "'";
             $result = mysqli_query($this->connect, $sql);
             if ($result->num_rows < 1) {
                 $this->sendUserMsg("danger", "Adresa de email si/sau parola sunt incorecte.");
@@ -85,6 +94,27 @@ class User extends Database {
                 }
             }
         }
+    }
+
+    /**
+     * UPDATE USER DETAILS
+     */
+    public function updateInfo($info) {
+        // TODO
+    }
+
+    /**
+     * UPDATE USER PASSWORD
+     */
+    public function updatePassword($password) {
+        // TODO
+    }
+
+    /**
+     * UPDATE USER PROFILE PHOTO
+     */
+    public function updateProfilePhoto($info) {
+        // TODO
     }
 }
 ?>

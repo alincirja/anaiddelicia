@@ -15,6 +15,8 @@ class Action extends Database {
                 $array[] = $row;
             }
             return $array;
+        } else {
+            echo "Nu exista date salvate";
         }
     }
 
