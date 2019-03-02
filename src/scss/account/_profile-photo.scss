@@ -1,0 +1,65 @@
+.preview-image {
+    background-color: $white;
+    padding: 20px;
+    max-width: 450px;
+    margin: 0 auto 20px;
+    border: 1px solid rgba($black, .15);
+
+    p {
+        color: $medium-grey;
+        font-size: 12px;
+    }
+
+    &-container {
+        background-color: $light-grey2;
+        padding: 20px;
+
+        .photo {
+            width: 126px;
+            height: 126px;
+            border: 3px solid $white;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    }
+}
+
+.profile-photo-form {
+    display: flex;
+    padding: 15px 0 0 0;
+
+    label {
+        margin: 0;
+        display: block;
+        border: 1px solid $primary;
+        padding: 6px 0;
+        position: relative;
+        width: 100%;
+
+        &:after {
+            content: "Selectare Fisier";
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background-color: $primary;
+            color: $white;
+            font-size: 13px;
+            line-height: 18px;
+            padding: 10px 6px;
+        }
+
+        input {
+            width: 100%;
+            outline: none;
+            font-size: 12px;
+            padding-left: 20px;
+        }
+
+        &:hover {
+            &:after {
+                background-color: darken($primary, 5%);
+            }
+        }
+    }
+}

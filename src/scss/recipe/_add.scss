@@ -1,0 +1,43 @@
+.form-group {
+    &.required {
+        label {
+            &:after {
+                content: " *";
+                color: $danger;
+            }
+        }
+    }
+}
+
+#imgPrev {
+    position: relative;
+
+    .helpers {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: rgba($white, .75);
+
+        .help-btn {
+            margin: 0;
+            padding: 3px 5px;
+            cursor: pointer;
+
+            &:hover {
+                color: $white;
+            }
+
+            &.edit {
+                &:hover {
+                    background-color: $primary;
+                }
+            }
+
+            &.remove {
+                &:hover {
+                    background-color: $crimson;
+                }
+            }
+        }
+    }
+}

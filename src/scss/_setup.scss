@@ -1,5 +1,16 @@
+html {
+    display: block;
+}
+
 body {
     background-color: $light-grey2;
+    font-size: 14px;
+}
+
+a,
+input,
+button {
+    transition: all .1s ease-in;
 }
 
 a {
@@ -8,4 +19,15 @@ a {
     &:active {
         text-decoration: none;
     }
+}
+
+label {
+    font-size: 14px;
+    color: darken($white, 55%);
+}
+
+.form-control {
+    font-size: 12px;
+    height: auto;
+    padding: 9px 12px;
 }

@@ -13,4 +13,6 @@
     require_once("templates/common/header.php");
     require_once("templates/home/hero.php");
     require_once("templates/common/footer.php");
+
+    echo password_hash("Alin", PASSWORD_DEFAULT);
 ?>

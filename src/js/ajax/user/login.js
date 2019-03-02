@@ -17,7 +17,7 @@ const login = () => {
             type: "POST",
             data: $form.serialize(),
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 const dataJSON = JSON.parse(data);
                 if (dataJSON.type === "success") {
                     window.location.replace(dataJSON.msg);

@@ -100,14 +100,87 @@ class User extends Database {
      * UPDATE USER DETAILS
      */
     public function updateInfo($info) {
-        // TODO
+        if (empty($info["name"]) || empty($info["email"])) {
+            $this->sendUserMsg("danger", "Completati campurile oblligatorii");
+            exit();
+        } else {
+            if (!preg_match("/^[a-zA-Z\s]*$/", $info["name"])) {
+                $this->sendUserMsg("danger", "Folositi doar litere latine in campul nume");
+                exit();
+            } else {
+                //Check for valid email
+                if (!filter_var($info["email"], FILTER_VALIDATE_EMAIL)) {
+                    $this->sendUserMsg("danger", "Adresa de email nu este valida");
+                    exit();
+                } else {
+                    $sql = "UPDATE " . $this->table . 
+                    " SET name='" . $info["name"] . 
+                    "', email='" . $info["email"] . 
+                    "', description='" . $info["description"] . 
+                    "', social_facebook='" . $info["facebook"] . 
+                    "', social_instagram='" . $info["instagram"] . 
+                    "', social_linkedin='" . $info["linkedin"] . 
+                    "', social_youtube='" . $info["youtube"] . 
+                    "' WHERE id=" . $info["id"];
+                    $result = mysqli_query($this->connect, $sql);
+                    if ($result) {
+                        $this->sendUserMsg("success", "Profilul a fost actualizat cu succes");
+                        exit();
+                    } else {
+                        $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
+                        exit();
+                    }
+                }
+            }
+        }
     }
 
     /**
      * UPDATE USER PASSWORD
      */
-    public function updatePassword($password) {
-        // TODO
+    public function checkPassword($password, $id) {
+        if (empty($password)) {
+            $this->sendUserMsg("danger", "Completati parola curenta");
+            exit();
+        } else {
+            $sql = "SELECT password FROM " . $this->table . " WHERE id='" . $id . "'";
+            $result = mysqli_query($this->connect, $sql);
+            if ($row = mysqli_fetch_assoc($result)) {
+                $hashedPassCheck = password_verify($password, $row["password"]);
+                if ($hashedPassCheck == true) {
+                    $this->sendUserMsg("success", "Parola este corecta");
+                    exit();
+                } else {
+                    $this->sendUserMsg("danger", "Parola este incorecta");
+                    exit();
+                }
+            } 
+        }
+
+    }
+
+    public function updatePassword($password, $confirm, $id) {
+        if (empty($password) || empty($confirm)) {
+            $this->sendUserMsg("danger", "Campurile sunt obligatorii");
+            exit();
+        } else {
+            if ($password != $confirm) {
+                $this->sendUserMsg("danger", "Parolele nu coincid");
+            } else {
+                $newPassword = password_hash($password, PASSWORD_DEFAULT);
+                $sql = "UPDATE " . $this->table .
+                " SET password='" . $newPassword . "'";
+                $result = mysqli_query($this->connect, $sql);
+                if ($result) {
+                    $this->sendUserMsg("success", "Parola a fost schimbata cu succes");
+                    exit();
+                } else {
+                    $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
+                    exit();
+                }
+            }
+
+        }
     }
 
     /**

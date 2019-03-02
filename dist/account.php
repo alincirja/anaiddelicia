@@ -22,7 +22,7 @@
             ?>
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                        <div class="account-navigation">
+                        <div class="account-navigation mb-4 mb-md-0">
                         <?php
                         require_once("templates/account/navigation.php");
                         if (isAdmin()) {
@@ -35,6 +35,8 @@
                         <?php
                         if (isset($_GET["section"]) && $_GET["section"] != "") {
                             require_once("templates/account/general/" . $_GET["section"] . ".php");
+                        } elseif (isAdmin() && isset($_GET["admin"]) && $_GET["admin"] != "") {
+                            require_once("templates/account/admin/" . $_GET["admin"] . ".php");
                         } else {
                             require_once("templates/account/dashboard.php");
                         }

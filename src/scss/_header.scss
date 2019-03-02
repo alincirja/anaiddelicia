@@ -139,8 +139,8 @@
             position: fixed;
             background-color: $white;
             padding: 0 15px;
-            left: 0;
-            right: 0;
+            left: -100%;
+            right: 100%;
             transition: all .3s;
 
             .nav-list {
@@ -162,8 +162,8 @@
 
         &.menu-collapsed {
             .main-nav {
-                left: -100%;
-                right: 100%;
+                left: 0;
+                right: 0;
             }
         }
     }

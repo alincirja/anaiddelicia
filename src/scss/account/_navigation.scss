@@ -36,12 +36,45 @@
         + .card {
             margin-top: 25px;
         }
+
+        .card-trigger {
+            span {
+                float: right;
+
+                .nav-close {
+                    display: none;
+                }
+
+                .nav-open {
+                    display: inline;
+                }
+            }
+        }
+
+        &.open {
+            .card-trigger {
+                span {
+                    .nav-close {
+                        display: inline;
+                    }
+
+                    .nav-open {
+                        display: none;
+                    }
+                }
+            }
+
+            .account-nav {
+                display: block;
+            }
+        }
     }
 
     .account-nav {
         list-style: none;
         padding: 0;
         margin: 0;
+        display: none;
 
         li {
             a {
@@ -68,6 +101,14 @@
             + li {
                 border-top: 1px solid $light-grey;
             }
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .account-navigation {
+        .account-nav {
+            display: block;
         }
     }
 }

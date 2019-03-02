@@ -1,0 +1,60 @@
+.recipe {
+    &-media {
+        .media-tab-content {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .media-tabs-btns {
+            .btns-list {
+                margin: 0;
+
+                li {
+                    width: 33.33333333%;
+
+                    a {
+                        background-color: rgba($black, .1);
+                        color: $dark-grey;
+                        display: block;
+                        text-transform: uppercase;
+                        text-align: center;
+                        padding: 10px;
+                        letter-spacing: .5px;
+
+                        span {
+                            position: relative;
+                            z-index: 2;
+                        }
+
+                        &:hover {
+                            background-color: $primary;
+                            color: $white;
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            background-color: $primary;
+                            color: $white;
+                            position: relative;
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                width: 25px;
+                                height: 25px;
+                                background-color: $primary;
+                                transform: rotate(45deg) translateX(-50%);
+                                top: 0;
+                                left: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

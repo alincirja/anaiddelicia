@@ -46,7 +46,7 @@ const initEvents = () => {
     $cache.toggleMenuBtn.on("click", toggleMenu);
     $cache.searchTrigger.on("click", toggleSearchForm);
     $cache.body.on("click", toggleSearchForm);
-    $(window).on("load resize", fixNavigation);
+    //$(window).on("load resize", fixNavigation);
     $('[data-toggle="tooltip"]').tooltip();
 };
 

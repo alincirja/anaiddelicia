@@ -2,10 +2,16 @@
     padding: 70px 0;
     margin: 99px 0 0;
 
+    .error {
+        padding-top: 0;
+    }
+
     h1 {
         font-size: 24px;
         text-transform: uppercase;
-        margin: 5px 0; 
+        margin: 5px 0 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid rgba($black, .05);
     }
 }
 

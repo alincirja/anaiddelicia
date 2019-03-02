@@ -13,5 +13,8 @@
         <title><?php echo $pageTitle; ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/main.css">
+        <style>
+            html {display:none;}
+        </style>
+        <link rel="stylesheet" type="text/css" href="./css/main.css">
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon">

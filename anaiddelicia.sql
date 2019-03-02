@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2019 at 07:34 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: 27 Feb 2019 la 17:42
+-- Versiune server: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,107 +25,147 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Structura de tabel pentru tabelul `categories`
 --
 
 CREATE TABLE `categories` (
-  `id` int(50) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Salvarea datelor din tabel `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Desert'),
+(2, 'Salate'),
+(3, 'Ciorbe'),
+(4, 'Fripturi'),
+(5, 'Aperitive');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_pages`
+-- Structura de tabel pentru tabelul `content_pages`
 --
 
 CREATE TABLE `content_pages` (
-  `id` int(50) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `body` varchar(53000) NOT NULL
+  `id` int(11) NOT NULL,
+  `title` longtext NOT NULL,
+  `body` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cooking_tips`
+-- Structura de tabel pentru tabelul `cooking_tips`
 --
 
 CREATE TABLE `cooking_tips` (
-  `id` int(50) NOT NULL,
-  `id_user` int(50) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `body` varchar(53000) NOT NULL
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `body` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favorite_recipes`
+-- Structura de tabel pentru tabelul `favorite_recipes`
 --
 
 CREATE TABLE `favorite_recipes` (
   `id` int(11) NOT NULL,
-  `id_user` int(50) NOT NULL,
-  `id_recipe` int(50) NOT NULL
+  `id_user` int(11) NOT NULL,
+  `id_recipe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `images`
+-- Structura de tabel pentru tabelul `images`
 --
 
 CREATE TABLE `images` (
-  `id` int(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `id_recipe` int(50) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `id_recipe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recipes`
+-- Structura de tabel pentru tabelul `recipes`
 --
 
 CREATE TABLE `recipes` (
-  `id` int(50) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `body` varchar(65000) NOT NULL,
-  `id_user` int(50) NOT NULL,
-  `id_category` int(50) NOT NULL,
-  `id_region` int(50) NOT NULL,
-  `ingredient_quantity` text NOT NULL,
-  `de_post` tinyint(1) NOT NULL
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `description` longtext NOT NULL,
+  `directions` longtext NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_category` int(11) NOT NULL,
+  `id_region` int(11) DEFAULT NULL,
+  `ingredients` longtext NOT NULL,
+  `cooking_time` varchar(25) NOT NULL,
+  `complexity` varchar(10) NOT NULL,
+  `servings_no` int(11) NOT NULL,
+  `de_post` tinyint(1) NOT NULL,
+  `image` text,
+  `video` text,
+  `status` varchar(20) NOT NULL DEFAULT 'asteptare'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `regions`
+-- Structura de tabel pentru tabelul `regions`
 --
 
 CREATE TABLE `regions` (
-  `id` int(50) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `regions`
+--
+
+INSERT INTO `regions` (`id`, `name`) VALUES
+(1, 'Moldova'),
+(2, 'Transilvania'),
+(3, 'Bucovina'),
+(4, 'Banat'),
+(5, 'Oltenia'),
+(6, 'Muntenia');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structura de tabel pentru tabelul `users`
 --
 
 CREATE TABLE `users` (
-  `id` int(50) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `register_date` date NOT NULL,
-  `sex` varchar(50) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  `description` varchar(50) NOT NULL
+  `email` varchar(150) NOT NULL,
+  `password` text NOT NULL,
+  `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `social_facebook` text,
+  `social_instagram` text,
+  `social_linkedin` text,
+  `social_youtube` text,
+  `description` longtext,
+  `rights` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `register_date`, `social_facebook`, `social_instagram`, `social_linkedin`, `social_youtube`, `description`, `rights`) VALUES
+(2, 'Alin', 'alin@alin.com', '$2y$10$QIdc1yUfQhhr2R2SleVktu1CkqyrWVT7Qr9Ykwe4Us4751PpXbpAW', '2019-02-21 15:52:11', NULL, NULL, NULL, NULL, NULL, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -171,8 +211,9 @@ ALTER TABLE `images`
 ALTER TABLE `recipes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_users_recipe` (`id_user`),
-  ADD KEY `fk_category_recipe` (`id_category`),
-  ADD KEY `fk_region_recipe` (`id_region`);
+  ADD KEY `fk_region_recipe` (`id_region`),
+  ADD KEY `fk_categories_recipe` (`id_category`) USING BTREE,
+  ADD KEY `id_region` (`id_region`) USING BTREE;
 
 --
 -- Indexes for table `regions`
@@ -184,7 +225,8 @@ ALTER TABLE `regions`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -194,19 +236,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `content_pages`
 --
 ALTER TABLE `content_pages`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cooking_tips`
 --
 ALTER TABLE `cooking_tips`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `favorite_recipes`
@@ -218,57 +260,29 @@ ALTER TABLE `favorite_recipes`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `regions`
 --
 ALTER TABLE `regions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Restrictii pentru tabele sterse
 --
-
---
--- Constraints for table `cooking_tips`
---
-ALTER TABLE `cooking_tips`
-  ADD CONSTRAINT `fk_users_cooking_tips` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `favorite_recipes`
---
-ALTER TABLE `favorite_recipes`
-  ADD CONSTRAINT `fk_favorite_recipe_recipe` FOREIGN KEY (`id_recipe`) REFERENCES `recipes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_users_favorite_recipe` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `images`
---
-ALTER TABLE `images`
-  ADD CONSTRAINT `fk_images_recipe` FOREIGN KEY (`id_recipe`) REFERENCES `recipes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `recipes`
---
-ALTER TABLE `recipes`
-  ADD CONSTRAINT `fk_category_recipe` FOREIGN KEY (`id_category`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_region_recipe` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_users_recipe` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
