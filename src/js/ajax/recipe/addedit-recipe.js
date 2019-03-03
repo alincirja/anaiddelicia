@@ -118,7 +118,7 @@ const deleteImage = item => {
 
 /** Initializare cache - salvare elemente DOM */
 const initCache = () => {
-    $cache.addeditRecipeForm = $("#addRecipeForm");
+    $cache.addeditRecipeForm = $("#addEditRecipeForm");
     $cache.fileInput = $("#recipeImage");
     $cache.galleryForm = $("#galleryForm");
     $cache.galleryInput = $("#galleryFile");

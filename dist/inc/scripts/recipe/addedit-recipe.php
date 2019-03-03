@@ -16,12 +16,13 @@ if (isset($_POST["action"])) {
     $info["complexity"] = mysqli_real_escape_string($recipe->connect, $_POST["recipeComplexity"]);
     $info["servings_no"] = mysqli_real_escape_string($recipe->connect, $_POST["recipeServingsNo"]);
     $info["de_post"] = mysqli_real_escape_string($recipe->connect, $_POST["recipeDePost"]);
-    $info["image"] = $_FILES["recipeImage"];
+    $info["image"] = $_FILES["recipeImage"] ? $_FILES["recipeImage"] : false;
     $info["video"] = mysqli_real_escape_string($recipe->connect, $_POST["recipeVideo"]);
+    $info["action"] = mysqli_real_escape_string($recipe->connect, $_POST["action"]);
+    $info["recipeId"] = isset($_POST["recipeId"]) ? mysqli_real_escape_string($recipe->connect, $_POST["recipeId"]) : 0;
     
-    if ($_POST["action"] === "addRecipe") {
-        $recipe->addRecipe($info);
-    }
+    //print_r($info);
+    $recipe->addEditRecipe($info);
 } else {
     echo "Eroare: Not set";
 }

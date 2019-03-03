@@ -10,8 +10,11 @@
     }
 ?>
 
-<form action="javascript:;" method="post" id="<?php echo $GLOBALS["editMode"] ? "editRecipeForm" : "addRecipeForm"; ?>" enctype="multipart/form-data">
+<form action="javascript:;" method="post" id="addEditRecipeForm" enctype="multipart/form-data">
     <input type="hidden" name="action" value="<?php echo $GLOBALS["editMode"] ? "editRecipe" : "addRecipe"; ?>" />
+    <?php if ($GLOBALS["editMode"]) { ?>
+        <input type="hidden" name="recipeId" value="<?php echo editValue("id"); ?>" />
+    <?php } ?>
     <div class="row">
         <div class="col-12 col-lg-8">
             <div class="row">

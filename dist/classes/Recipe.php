@@ -37,7 +37,7 @@ class Recipe extends Database {
     /**
      * ADD RECIPE IN DATABASE + PRESENTATION IMAGE
      */
-    public function addRecipe($info) {
+    public function addEditRecipe($info) {
         $requiredVals = array(
             "recipeTitle"           => $info["title"],
             "recipeDescription"     => $info["description"],
@@ -60,9 +60,9 @@ class Recipe extends Database {
             $this->sendUserMsg("danger", "Completati toate campurile obligatorii", $emptyVal);
             exit();
         } else {
-            if ($info["image"]) {
+            if ($info["image"] && $info["image"]["error"] === 0) {
                 if ($info["image"]["error"] != 0) {
-                    $this->sendUserMsg("danger", "Imaginea selectata nu este valida.");
+                    $this->sendUserMsg("danger", "Imaginea selectata nu este valida: " . $info["image"]["error"]);
                     exit();
                 } else {
                     $allowed = ["png", "jpg", "jpeg"];
@@ -89,30 +89,55 @@ class Recipe extends Database {
                 $info["image"] = "";
             }
 
-            $sql =
-            "INSERT INTO " . $this->table . 
-            " (title, description, directions, id_user, id_category, id_region, ingredients, cooking_time, complexity, servings_no, de_post, image, video) VALUES ('"
-            . $info["title"] . "','" .
-              $info["description"] . "','".
-              $info["directions"] . "','".
-              $info["id_user"] . "','".
-              $info["id_category"] . "','".
-              $info["id_region"] . "','".
-              $info["ingredients"] . "','".
-              $info["cooking_time"] . "','".
-              $info["complexity"] . "','".
-              $info["servings_no"] . "','".
-              $info["de_post"] . "','".
-              $info["image"] . "','".
-              $info["video"] . "')";
-            
-            $result = mysqli_query($this->connect, $sql);
-            if ($result) {
-                $this->sendUserMsg("success", "Reteta a fost adaugata cu succes");
-                exit();
-            } else {
-                $this->sendUserMsg("danger", "Eroare BD: " . mysqli_error($this->connect));
-                exit();
+            if ($info["action"] === "addRecipe") {
+                $sql =
+                "INSERT INTO " . $this->table . 
+                " (title, description, directions, id_user, id_category, id_region, ingredients, cooking_time, complexity, servings_no, de_post, image, video) VALUES ('"
+                . $info["title"] . "','" .
+                $info["description"] . "','".
+                $info["directions"] . "','".
+                $info["id_user"] . "','".
+                $info["id_category"] . "','".
+                $info["id_region"] . "','".
+                $info["ingredients"] . "','".
+                $info["cooking_time"] . "','".
+                $info["complexity"] . "','".
+                $info["servings_no"] . "','".
+                $info["de_post"] . "','".
+                $info["image"] . "','".
+                $info["video"] . "')";
+                
+                $result = mysqli_query($this->connect, $sql);
+                if ($result) {
+                    $this->sendUserMsg("success", "Reteta a fost adaugata cu succes");
+                    exit();
+                } else {
+                    $this->sendUserMsg("danger", "Eroare BD: " . mysqli_error($this->connect));
+                    exit();
+                }
+            } elseif ($info["action"] === "editRecipe" && $info["recipeId"] != 0) {
+                $sql = "UPDATE " . $this->table . 
+                " SET title='" . $info["title"] . 
+                "', description='" . $info["description"] . 
+                "', directions='" . $info["directions"] . 
+                "', id_user='" . $info["id_user"] . 
+                "', id_category='" . $info["id_category"] . 
+                "', id_region='" . $info["id_region"] . 
+                "', ingredients='" . $info["ingredients"] . 
+                "', cooking_time='" . $info["cooking_time"] . 
+                "', servings_no='" . $info["servings_no"] .
+                "', de_post='" . $info["de_post"] .
+                "', image='" . $info["image"] .
+                "', video='" . $info["video"] .
+                "' WHERE id=" . $info["recipeId"];
+                    $result = mysqli_query($this->connect, $sql);
+                    if ($result) {
+                        $this->sendUserMsg("success", "Reteta a fost actualizata cu succes");
+                        exit();
+                    } else {
+                        $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
+                        exit();
+                    }
             }
         }
     }
