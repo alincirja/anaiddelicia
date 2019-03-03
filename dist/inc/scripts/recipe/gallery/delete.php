@@ -6,5 +6,5 @@ if (isset($_POST["action"]) && $_POST["action"] === "deleteImage") {
         $image->deleteById("images", $_GET["id"]);
     }
 } else {
-    print_r($_POST);
+    header("Location: ../../../../404");
 }

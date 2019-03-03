@@ -137,6 +137,24 @@
             }
         }
     }
+
+    .recipe-status {
+        text-transform: capitalize;
+
+        &.text {
+            &-asteptare {
+                color: $warning;
+            }
+
+            &-aprobat {
+                color: $success;
+            }
+
+            &-refuzat {
+                color: $danger;
+            }
+        }
+    }
 }
 
 .recipe-tile {
@@ -150,13 +168,17 @@
         }
     }
 
-    .description {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        white-space: normal;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 3;
-        max-height: 63px;
+    .card-title {
+        margin: 0;
+        font-size: 18px;
+        text-align: center;
+
+        a {
+            color: $black;
+
+            &:hover {
+                color: $primary;
+            }
+        }
     }
 }

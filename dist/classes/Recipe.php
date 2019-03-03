@@ -35,6 +35,21 @@ class Recipe extends Database {
     }
 
     /**
+     * SET RECIPE STATUS
+     */
+    public function setStatus($status, $id) {
+        $sql = "UPDATE " . $this->table . " SET status='" . $status . "' WHERE id='" . $id . "'";
+        $query = mysqli_query($this->connect, $sql);
+        if ($query) {
+            $this->sendUserMsg("success", "Reteta a fost actualizata.");
+            exit();
+        } else {
+            $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
+            exit();
+        }
+    }
+
+    /**
      * ADD RECIPE IN DATABASE + PRESENTATION IMAGE
      */
     public function addRecipe($info) {

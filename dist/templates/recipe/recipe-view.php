@@ -126,20 +126,50 @@
             <?php if (isAdmin()) { ?>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h6 class="card-title">Revizuire</h6>
+                    <h6 class="card-title d-flex flex-nowrap justify-content-between align-items-center">
+                        <span>Revizuire</span>
+                        <small class="recipe-status text-<?php echo $myrecipe["status"]; ?>">
+                            <?php echo $myrecipe["status"] ?>
+                        </small>
+                    </h6>
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" class="btn btn-sm btn-block btn-primary disabled">Aprob</a>
+                            <a href="<?php echo ROOT_URL . "inc/scripts/recipe/status?status=apropat?id=" . $myrecipe["id"]; ?>" class="btn btn-sm btn-block btn-primary <?php echo $myrecipe["status"] === "aprobat" ? "disabled" : ""; ?>">Aprob</a>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-sm btn-block btn-danger">Refuz</a>
+                            <a href="<?php echo ROOT_URL . "inc/scripts/recipe/status?status=refuzat?id=" . $myrecipe["id"]; ?>" class="btn btn-sm btn-block btn-danger <?php echo $myrecipe["status"] === "refuzat" ? "disabled" : ""; ?>">Refuz</a>
                         </div>
                     </div><!--/.row-->
                 </div>
             </div><!--/.card-->
             <?php } ?>
 
-            <?php if ((loggedIn() && $myrecipe["id_user"] === $_SESSION["id"]) || isAdmin()) { ?>
+            <?php if ((loggedIn() && $myrecipe["id_user"] === $_SESSION["id"]) || isAdmin()) {
+                $recipeAlert = array();
+                switch ($myrecipe["status"]) {
+                    case "asteptare":
+                        $recipeAlert["class"] = "warning";
+                        $recipeAlert["msg"] = "Reteta nu este revizuita.";
+                        break;
+                    
+                    case "refuzat":
+                        $recipeAlert["class"] = "danger";
+                        $recipeAlert["msg"] = "Reteta nu a fost aprobata.";
+                        break;
+
+                    case "aprobat":
+                        $recipeAlert["class"] = "success";
+                        $recipeAlert["msg"] = "Reteta este aprobata si este vizibila pentru toti utilizatorii.";
+                        break;
+                    
+                    default:
+                        $recipeAlert = array();
+                        break;
+                }
+
+                if (count($recipeAlert) === 2) { ?>
+                <div class="alert alert-<?php echo $recipeAlert["class"]; ?>"><?php echo $recipeAlert["msg"]; ?></div>
+            <?php } ?>
             <div class="card mb-4">
                 <div class="card-body">
                     <h6 class="card-title">Editare</h6>

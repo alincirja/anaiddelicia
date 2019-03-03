@@ -18,9 +18,12 @@
     $recipes = $action->getData("recipes");
 
 ?>
-<section id="main-content" class="content-page m-0 py-4">
+<section id="main-content" class="pt-5 pb-4">
     <div class="container">
-        <h1>Adaugate Recent</h1>
+        <h1 class="section-title">
+            Rețete Recente
+            <span class="divider"><i class="fas fa-utensils"></i></span>
+        </h1>
         <div class="row">
         <?php foreach($recipes as $recipe) { ?>
             <div class="col-12 col-md-6 col-lg-4 my-4">

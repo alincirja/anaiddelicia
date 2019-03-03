@@ -24,6 +24,45 @@
     }
 }
 
+.section-title {
+    font-size: 33px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin: 56px 0 35px;
+    letter-spacing: 1.6px;
+    text-align: center;
+    margin: 0 0 35px;
+    position: relative;
+    color: $dark-grey;
+
+    .divider {
+        display: block;
+        max-width: 250px;
+        position: relative;
+        font-size: 13px;
+        color: $dark-grey;
+        margin: 15px auto 0;
+
+        &:before {
+            content: "";
+            position: absolute;
+            height: 1px;
+            left: 0;
+            right: 0;
+            top: 50%;
+            background-color: $medium-grey;
+        }
+
+        i {
+            position: relative;
+            z-index: 2;
+            background-color: $light-grey2;
+            padding: 0 10px;
+        }
+    }
+}
+
 @include media-breakpoint-down(md) {
     .content-page {
         padding: 35px 0;
