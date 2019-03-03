@@ -188,32 +188,26 @@ ALTER TABLE `content_pages`
 --
 ALTER TABLE `cooking_tips`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_users_cooking_tips` (`id_user`);
 
 --
 -- Indexes for table `favorite_recipes`
 --
 ALTER TABLE `favorite_recipes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_users_favorite_recipe` (`id_user`),
-  ADD KEY `fk_favorite_recipe_recipe` (`id_recipe`);
 
 --
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_images_recipe` (`id_recipe`);
+
 
 --
 -- Indexes for table `recipes`
 --
 ALTER TABLE `recipes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_users_recipe` (`id_user`),
-  ADD KEY `fk_region_recipe` (`id_region`),
-  ADD KEY `fk_categories_recipe` (`id_category`) USING BTREE,
-  ADD KEY `id_region` (`id_region`) USING BTREE;
+
 
 --
 -- Indexes for table `regions`
