@@ -21,7 +21,7 @@ class Recipe extends Database {
      * GET RECIPE GALLERY
      */
     public function getGallery($id) {
-        $sql = "SELECT * FROM " . $this->tableImages . " WHERE id_recipe='" . $id . "'";
+        $sql = "SELECT * FROM " . $this->tableImages . " WHERE id_recipe='" . $id . "' ORDER BY id DESC";
         $array = array();
         $query = mysqli_query($this->connect, $sql);
 
@@ -31,7 +31,6 @@ class Recipe extends Database {
             }
             
         }
-
         return $array;
     }
 

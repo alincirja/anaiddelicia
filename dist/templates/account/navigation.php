@@ -33,7 +33,7 @@ function activeNav($sec) {
 ?>
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title card-trigger m-0 text-uppercase">Setari generale <span class="d-md-none"><i class="fas fa-fw fa-angle-down nav-open"></i><i class="fas fa-fw fa-angle-up nav-close"></i></span></h5>
+        <h6 class="card-title card-trigger m-0 text-uppercase">Setari generale <span class="d-md-none"><i class="fas fa-fw fa-angle-down nav-open"></i><i class="fas fa-fw fa-angle-up nav-close"></i></span></h6>
         <ul class="account-nav mt-3">
             <li><a href="account" class="<?php activeNav("account"); ?>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>

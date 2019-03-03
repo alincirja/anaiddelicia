@@ -10,6 +10,7 @@ require('bootstrap/dist/js/bootstrap');
 
 require('./js/navigation');
 require('./js/account');
+require('./js/recipe');
 
 /**
  * AJAX FUNCTIONS

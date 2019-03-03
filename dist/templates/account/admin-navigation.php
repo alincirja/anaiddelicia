@@ -13,7 +13,7 @@ function activeNavAdmin($sec) {
 ?>
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title card-trigger m-0 text-uppercase">Zona Administrare <span class="d-md-none"><i class="fas fa-fw fa-angle-down nav-open"></i><i class="fas fa-fw fa-angle-up nav-close"></i></span></h5>
+        <h6 class="card-title card-trigger m-0 text-uppercase">Zona Administrare <span class="d-md-none"><i class="fas fa-fw fa-angle-down nav-open"></i><i class="fas fa-fw fa-angle-up nav-close"></i></span></h6>
         <ul class="account-nav mt-3">
             <li><a href="?admin=recipes" class="<?php activeNavAdmin("recipes"); ?>">
                 Retete

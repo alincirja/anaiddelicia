@@ -50,6 +50,8 @@
 	                            include_once "templates/recipe/recipe-form.php";
                             } elseif ($recipePage === "view") {
                                 include_once "templates/recipe/recipe-view.php";
+                            } elseif ($recipePage === "gallery") {
+                                include_once "templates/recipe/recipe-gallery.php";
                             }
                         }
                     }

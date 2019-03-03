@@ -58,6 +58,15 @@ class Database {
             return $row = mysqli_fetch_assoc($query);
         }
     }
+
+    public function getForeignData($table, $field) {
+        $sql = "SELECT * FROM " . $table . " WHERE id='" . $field . "'";
+        $query = mysqli_query($this->connect, $sql);
+
+        if ($query->num_rows == 1) {
+            return $row = mysqli_fetch_assoc($query);
+        }
+    }
     
     /**
      * ACTION - CREATE
@@ -68,7 +77,29 @@ class Database {
         $sql .= " (" . implode(",", array_keys($fields)) . ") VALUES ";
         $sql .= "('" . implode("','", array_values($fields)) . "')";
         $query = mysqli_query($this->connect, $sql);
-        return $query ? true : false;
+        if ($query) {
+            $this->sendUserMsg("success", "Inregistrarea a fost adaugata.");
+            exit();
+        } else {
+            $this->sendUserMsg("danger", "Eroare BD: " . mysqli_error($this->connect));
+            exit();
+        }
     }
+
+    /**
+     * ACTION - DELETE BY ID
+     */
+
+     public function deleteById($table, $id) {
+        $sql = "DELETE FROM " . $table . " WHERE id='" . $id . "'";
+        $query = mysqli_query($this->connect, $sql);
+        if ($query) {
+            $this->sendUserMsg("success", "Inregistrarea a fost stearsa.");
+            exit();
+        } else {
+            $this->sendUserMsg("danger", "Eroare BD: " . mysqli_error($this->connect));
+            exit();
+        }
+     }
 }
 ?>

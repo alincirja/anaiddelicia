@@ -11,12 +11,18 @@
         .media-tabs-btns {
             .btns-list {
                 margin: 0;
+                padding: 5px 15px;
+                background-color: $white;
+                border-width: 0 1px 0 1px;
+                border-style: solid;
+                border-color: rgba($black, .125);
 
                 li {
-                    width: 33.33333333%;
+                    flex: 1;
+                    padding: 5px;
 
                     a {
-                        background-color: rgba($black, .1);
+                        background-color: rgba($black, .025);
                         color: $dark-grey;
                         display: block;
                         text-transform: uppercase;
@@ -44,8 +50,8 @@
                             &::before {
                                 content: "";
                                 position: absolute;
-                                width: 25px;
-                                height: 25px;
+                                width: 15px;
+                                height: 15px;
                                 background-color: $primary;
                                 transform: rotate(45deg) translateX(-50%);
                                 top: 0;
@@ -56,5 +62,101 @@
                 }
             }
         }
+    }
+
+    &-info {
+        .card {
+            border-top: 0;
+        }
+
+        h1 {
+            text-transform: capitalize;
+            padding: 0;
+            border: 0;
+            margin-top: 0;
+        }
+    }
+
+    .check-item {
+        margin: 0 0 10px;
+
+        .box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba($black, .125);
+            color: $white;
+            text-align: center;
+            line-height: 18px;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .text {
+            padding-left: 11px;
+            line-height: 20px;
+        }
+
+        &:hover {
+            .box {
+                border-color: darken($primary, 15%);
+            }
+        }
+
+        &.checked {
+            .box {
+                background-color: $primary;
+            }
+        }
+    }
+
+    .author {
+        margin: 0 0 10px;
+
+        .profile-image {
+            width: 40px;
+        }
+
+        .name {
+            padding-left: 10px;
+        }
+    }
+
+    .info-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            padding: 7px 0;
+
+            + li {
+                border-top: 1px solid rgba($black, .125);
+            }
+        }
+    }
+}
+
+.recipe-tile {
+    img {
+        transition: all .3s;
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.1);
+        }
+    }
+
+    .description {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        white-space: normal;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        max-height: 63px;
     }
 }
