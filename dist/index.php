@@ -25,11 +25,13 @@
             <span class="divider"><i class="fas fa-utensils"></i></span>
         </h1>
         <div class="row">
-        <?php foreach($recipes as $recipe) { ?>
+        <?php foreach($recipes as $recipe) {
+            if ($recipe["status"] === "aprobat") { ?>
             <div class="col-12 col-md-6 col-lg-4 my-4">
                 <?php include "templates/recipe/tile.php"; ?>
             </div>
-        <?php } ?>
+        <?php } 
+        } ?>
         </div>
     </div>
 </section>
