@@ -131,6 +131,13 @@ class Recipe extends Database {
                     exit();
                 }
             } elseif ($info["action"] === "editRecipe" && $info["recipeId"] != 0) {
+                $currentImage;
+                $getCurrentImage = mysqli_query($this->connect, "SELECT image FROM " . $this->table . " WHERE id='" . $info["recipeId"] . "'");
+                if ($getCurrentImage->num_rows == 1) {
+                    $currentImage = mysqli_fetch_assoc($getCurrentImage);
+                }
+                $info["image"] = $info["image"] === "" ? $currentImage["image"] : $info["image"];
+
                 $sql = "UPDATE " . $this->table . 
                 " SET title='" . $info["title"] . 
                 "', description='" . $info["description"] . 
@@ -144,15 +151,15 @@ class Recipe extends Database {
                 "', de_post='" . $info["de_post"] .
                 "', image='" . $info["image"] .
                 "', video='" . $info["video"] .
-                "' WHERE id=" . $info["recipeId"];
-                    $result = mysqli_query($this->connect, $sql);
-                    if ($result) {
-                        $this->sendUserMsg("success", "Reteta a fost actualizata cu succes");
-                        exit();
-                    } else {
-                        $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
-                        exit();
-                    }
+                "', status='asteptare' WHERE id=" . $info["recipeId"];
+                $result = mysqli_query($this->connect, $sql);
+                if ($result) {
+                    $this->sendUserMsg("success", "Reteta a fost actualizata cu succes");
+                    exit();
+                } else {
+                    $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
+                    exit();
+                }
             }
         }
     }

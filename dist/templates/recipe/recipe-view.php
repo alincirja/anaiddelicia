@@ -134,10 +134,10 @@
                     </h6>
                     <div class="row">
                         <div class="col-6">
-                            <a href="<?php echo ROOT_URL . "inc/scripts/recipe/status?status=apropat?id=" . $myrecipe["id"]; ?>" class="btn btn-sm btn-block btn-primary <?php echo $myrecipe["status"] === "aprobat" ? "disabled" : ""; ?>">Aprob</a>
+                            <a href="<?php echo ROOT_URL . "inc/scripts/recipe/status?status=aprobat&id=" . $myrecipe["id"]; ?>" class="btn btn-sm btn-block btn-primary set-status <?php echo $myrecipe["status"] === "aprobat" ? "disabled" : ""; ?>">Aprob</a>
                         </div>
                         <div class="col-6">
-                            <a href="<?php echo ROOT_URL . "inc/scripts/recipe/status?status=refuzat?id=" . $myrecipe["id"]; ?>" class="btn btn-sm btn-block btn-danger <?php echo $myrecipe["status"] === "refuzat" ? "disabled" : ""; ?>">Refuz</a>
+                            <a href="<?php echo ROOT_URL . "inc/scripts/recipe/status?status=refuzat&id=" . $myrecipe["id"]; ?>" class="btn btn-sm btn-block btn-danger set-status <?php echo $myrecipe["status"] === "refuzat" ? "disabled" : ""; ?>">Refuz</a>
                         </div>
                     </div><!--/.row-->
                 </div>
