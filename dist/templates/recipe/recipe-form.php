@@ -46,13 +46,13 @@
                         </select>
                     </div><!--/.form-group-->
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12">
                     <div class="form-group required">
                         <label for="recipeDescription">Descriere</label>
                         <textarea class="form-control" placeholder="Descriere" id="recipeDescription" name="recipeDescription"  cols="30" rows="5"><?php echo editValue("description"); ?></textarea>
                     </div><!--/.form-group-->
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12">
                     <div class="form-group required">
                         <label for="recipeDirections">Instructiuni</label>
                         <textarea  class="form-control" placeholder="Instructiuni" id="recipeDirections" name="recipeDirections"  cols="30" rows="5"><?php echo editValue("directions"); ?></textarea>

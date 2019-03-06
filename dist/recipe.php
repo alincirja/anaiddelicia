@@ -45,9 +45,13 @@
                             include_once "404.php";
                         } else {
                             if ($recipePage === "edit") {
-                                $GLOBALS["editMode"] = true;
-                                echo "<h1>Modificare Reteta #" . $_GET["id"] . "</h1>";
-	                            include_once "templates/recipe/recipe-form.php";
+                                if ($myrecipe["id_user"] === $_SESSION["id"] || isAdmin()) {
+                                    $GLOBALS["editMode"] = true;
+                                    echo "<h1>Modificare Reteta #" . $_GET["id"] . "</h1>";
+                                    include_once "templates/recipe/recipe-form.php";
+                                } else {
+                                    include_once "404.php";
+                                }
                             } elseif ($recipePage === "view") {
                                 include_once "templates/recipe/recipe-view.php";
                             } elseif ($recipePage === "gallery") {

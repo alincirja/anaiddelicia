@@ -115,6 +115,29 @@ const deleteImage = item => {
     return false;
 };
 
+const setStatus = item => {
+    const data = {
+        "action": "setStatus"
+    }
+    $.ajax({
+        url: $(item).attr("href"),
+        type: "POST",
+        data: data,
+        success: function(data) {
+            const dataJSON = JSON.parse(data);
+            if (dataJSON.type === "success") {
+                location.reload();
+            } else {
+                $(item).closest(".card-body").append("<div class='alert mt-2 alert-"+dataJSON.type+"'>"+dataJSON.msg+"</div>");
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+    return false;
+};
+
 
 /** Initializare cache - salvare elemente DOM */
 const initCache = () => {
@@ -123,6 +146,7 @@ const initCache = () => {
     $cache.galleryForm = $("#galleryForm");
     $cache.galleryInput = $("#galleryFile");
     $cache.galleryDelete = $(document).find(".delete-image");
+    $cache.statusBtn = $(document).find(".set-status");
 };
 
 /** Initializare evenimente */
@@ -135,6 +159,10 @@ const initEvents = () => {
     $cache.galleryDelete.on("click", function(e) {
         e.preventDefault();
         deleteImage(this);
+    });
+    $cache.statusBtn.on("click", function(e) {
+        e.preventDefault();
+        setStatus(this);
     });
     $(".help-btn.remove").on("click", removeImg);
 };
