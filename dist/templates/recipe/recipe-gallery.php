@@ -5,7 +5,7 @@
     $myrecipe   = $recipe->getById($id);
     $gallery    = $recipe->getGallery($id);
 ?>
-<h1>Galerie: <?php echo $myrecipe["title"] . " #" . $myrecipe["id"]; ?></h1>
+<h1>Galerie: <a href="<?php echo RECIPE_URL["view"] . $myrecipe["id"]  ?>"><?php echo $myrecipe["title"] . " #" . $myrecipe["id"]; ?></a></h1>
 <div class="gallery-form mb-3">
     <form action="javascript:;" enctype="multipart/form-data" id="galleryForm">
         <input type="hidden" name="action" value="addImage">

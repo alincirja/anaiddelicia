@@ -21,7 +21,7 @@
 <section id="main-content" class="pt-5 pb-4">
     <div class="container">
         <h1 class="section-title">
-            Rețete Recente
+            Rețete adaugate recent
             <span class="divider"><i class="fas fa-utensils"></i></span>
         </h1>
         <div class="row">

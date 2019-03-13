@@ -47,7 +47,7 @@
                             if ($recipePage === "edit") {
                                 if ($myrecipe["id_user"] === $_SESSION["id"] || isAdmin()) {
                                     $GLOBALS["editMode"] = true;
-                                    echo "<h1>Modificare Reteta #" . $_GET["id"] . "</h1>";
+                                    echo "<h1>Modificare Reteta <a href='" . RECIPE_URL["view"] . $_GET["id"] . "'>#" . $_GET["id"] . "</a></h1>";
                                     include_once "templates/recipe/recipe-form.php";
                                 } else {
                                     include_once "404.php";

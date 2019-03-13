@@ -5,8 +5,7 @@ if (isset($_POST["action"]) && $_POST["action"] === "setStatus") {
         $recipe = new Recipe();
         $recipe->setStatus($_GET["status"], $_GET["id"]);
     } else {
-        print_r($_POST);
-        print_r($_GET);
+        header("Location: ../../../404");
     }
 } else {
     header("Location: ../../../404");

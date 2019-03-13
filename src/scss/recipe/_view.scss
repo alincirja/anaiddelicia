@@ -137,22 +137,22 @@
             }
         }
     }
+}
 
-    .recipe-status {
-        text-transform: capitalize;
+.recipe-status {
+    text-transform: capitalize;
 
-        &.text {
-            &-asteptare {
-                color: $warning;
-            }
+    &.text {
+        &-asteptare {
+            color: $warning;
+        }
 
-            &-aprobat {
-                color: $success;
-            }
+        &-aprobat {
+            color: $success;
+        }
 
-            &-refuzat {
-                color: $danger;
-            }
+        &-refuzat {
+            color: $danger;
         }
     }
 }

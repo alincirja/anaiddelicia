@@ -1,12 +1,14 @@
 <?php
-    $viewLink = ROOT_URL . "recipe?type=view&id=" . $recipe["id"];
+    $viewLink = RECIPE_URL["view"] . $recipe["id"];
 ?>
 
 <div class="card recipe-tile">
-    <div class="embed-responsive embed-responsive-4by3">
-        <a href="<?php echo $viewLink; ?>">
-            <img class="embed-responsive-item" src="img/upload/recipes/<?php echo $recipe["image"]; ?>" alt="<?php echo $recipe["title"]; ?>">
-        </a>
+    <div class="tile-image">
+        <div class="embed-responsive embed-responsive-4by3">
+            <a href="<?php echo $viewLink; ?>">
+                <img class="embed-responsive-item" src="<?php echo RECIPE_IMAGES . $recipe["image"]; ?>" alt="<?php echo $recipe["title"]; ?>">
+            </a>
+        </div>
     </div>
     <div class="card-body">
         <h5 class="card-title text-capitalize">

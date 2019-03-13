@@ -1,5 +1,5 @@
 <?php
-include "Database.php";
+include_once "Database.php";
 
 class Recipe extends Database {
     private $table = "recipes";
@@ -14,6 +14,24 @@ class Recipe extends Database {
 
         if ($query->num_rows == 1) {
             return $row = mysqli_fetch_assoc($query);
+        }
+    }
+
+    /**
+     * GET BY USER ID
+     */
+    public function getByUser($userId) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE id_user='" . $userId . "'";
+        $array = array();
+        $query = mysqli_query($this->connect, $sql);
+
+        if ($query->num_rows > 0) {
+            while ($row = mysqli_fetch_assoc($query)) {
+                $array[] = $row;
+            }
+            return $array;
+        } else {
+            echo "Nu ati adaugat nicio reteta";
         }
     }
 
