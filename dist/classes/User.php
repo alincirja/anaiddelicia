@@ -169,7 +169,7 @@ class User extends Database {
             } else {
                 $newPassword = password_hash($password, PASSWORD_DEFAULT);
                 $sql = "UPDATE " . $this->table .
-                " SET password='" . $newPassword . "'";
+                " SET password='" . $newPassword . "' WHERE id='" . $id . "'";
                 $result = mysqli_query($this->connect, $sql);
                 if ($result) {
                     $this->sendUserMsg("success", "Parola a fost schimbata cu succes");
