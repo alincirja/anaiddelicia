@@ -11,7 +11,7 @@ const liveSearch = () => {
         "liveSearch": $("#liveSearch").val()
     }
     $.ajax({
-        url: "templates/account/admin/ajax-templates/live-search.php",
+        url: "templates/account/admin/ajax-templates/recipe-live-search.php",
         type: "POST",
         data: data,
         success: function(data) {
