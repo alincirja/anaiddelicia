@@ -24,7 +24,7 @@ function activeNavAdmin($sec) {
             <li><a href="?admin=users" class="<?php activeNavAdmin("users"); ?>">
                 Utilizatori
             </a></li>
-            <li><a href="?admin=tips" class="<?php activeNavAdmin("tips"); ?>">
+            <li><a href="?admin=tips" class="<?php activeNavAdmin("cooking_tips"); ?>">
                 Sfaturi Culinare
             </a></li>
         </ul>
