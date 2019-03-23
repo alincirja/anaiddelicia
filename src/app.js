@@ -21,4 +21,5 @@ require('./js/ajax/user/update-profile');
 require('./js/ajax/user/password');
 require('./js/ajax/recipe/addedit-recipe');
 require('./js/ajax/recipe/live-search');
+require('./js/ajax/user/live-search');
 require('./js/ajax/category/addeditdelete');
