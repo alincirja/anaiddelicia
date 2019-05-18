@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-auto col-lg-2 col-xl-1">
-                        <a class="logo" href="<?php echo ROOT_PATH; ?>">
+                        <a class="logo" href="<?php echo ROOT_URL; ?>">
                             <span>ANAID</span>
                             <small>DELICIA</small>
                         </a>
@@ -44,10 +44,9 @@
                     <div class="col-12 col-lg-10 col-xl-11">
                         <nav class="main-nav">
                             <ul class="list-unstyled nav-list">
-                                <li><a href="<?php echo ROOT_PATH . "category"; ?>">Retete</a></li>
+                                <li><a href="<?php echo ROOT_URL . "category"; ?>">Retete</a></li>
                                 <li><a href="#">Sfaturi Culinare</a></li>
-                                <li><a href="#">Generare Meniu</a></li>
-                                <li><a href="#">Topuri</a></li>
+                                <li><a href="<?php echo ROOT_URL . "meal-maker"; ?>">Comanda</a></li>
                                 <li><a href="#">Contactati-ne</a></li>
                             </ul>
                         </nav>

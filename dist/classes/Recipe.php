@@ -4,6 +4,7 @@ include_once "Database.php";
 class Recipe extends Database {
     private $table = "recipes";
     private $tableImages = "images";
+    private $tableFavs = "favorite_recipes";
 
     /**
      * GET RECIPE BY PROVIDED ID
@@ -65,6 +66,14 @@ class Recipe extends Database {
             $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
             exit();
         }
+    }
+
+    /**
+     * CHECK FOR FAV
+     */
+    public function isFav($user, $recipe) {
+        $query = mysqli_query($this->connect, "SELECT * FROM " . $this->tableFavs . " WHERE id_user='" . $user . "' AND id_recipe='" . $recipe . "'");
+        return $query->num_rows > 0;
     }
 
     /**

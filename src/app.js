@@ -11,6 +11,7 @@ require('bootstrap/dist/js/bootstrap');
 require('./js/navigation');
 require('./js/account');
 require('./js/recipe');
+require('./js/meal-maker');
 
 /**
  * AJAX FUNCTIONS
