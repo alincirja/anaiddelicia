@@ -120,6 +120,52 @@ CREATE TABLE `recipes` (
 -- --------------------------------------------------------
 
 --
+-- Structură tabel pentru tabel `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `event_type` varchar(50) NOT NULL,
+  `event_date` varchar(12) NOT NULL,
+  `servings_no` int(11) NOT NULL,
+  `contact_person` varchar(55) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `location_name` varchar(55) NOT NULL,
+  `location_address` varchar(55) NOT NULL,
+  `details` longtext NOT NULL,
+  `appetizer_standard` int(11) DEFAULT NULL,
+  `appetizer_custom` longtext,
+  `first_type_steak` int(11) NOT NULL,
+  `first_type_side_dish` int(11) NOT NULL,
+  `first_type_salad` int(11) NOT NULL,
+  `second_type` int(11) NOT NULL,
+  `desert` int(11) NOT NULL,
+  `status` varchar(55) NOT NULL DEFAULT 'asteptare'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexuri pentru tabele eliminate
+--
+
+--
+-- Indexuri pentru tabele `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pentru tabele eliminate
+--
+
+--
+-- AUTO_INCREMENT pentru tabele `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+--
 -- Structura de tabel pentru tabelul `regions`
 --
 
