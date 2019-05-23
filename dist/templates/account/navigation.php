@@ -59,7 +59,7 @@ function activeNav($sec) {
                 <i class="far fa-fw fa-heart"></i>
                 <span>Retete Favorite</span>
             </a></li>
-            <li><a href="?section=tips" class="<?php activeNav("cooking_tips"); ?>">
+            <li><a href="?section=tips" class="<?php activeNav("tips"); ?>">
                 <i class="far fa-fw fa-grin-wink"></i>
                 <span>Sfaturi culinare</span>
             </a></li>

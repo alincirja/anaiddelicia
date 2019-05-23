@@ -46,8 +46,7 @@
                             <ul class="list-unstyled nav-list">
                                 <li><a href="<?php echo ROOT_PATH . "category"; ?>">Retete</a></li>
                                 <li><a href="<?php echo ROOT_PATH . "tip"; ?>">Sfaturi Culinare</a></li>
-                                <li><a href="#">Generare Meniu</a></li>
-                                <li><a href="#">Topuri</a></li>
+                                <li><a href="<?php echo ROOT_URL . "meal-maker"; ?>">Comanda</a></li>
                                 <li><a href="<?php echo ROOT_PATH . "contact"; ?>">Contactati-ne</a></li>
                             </ul>
                         </nav>
