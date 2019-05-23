@@ -14,6 +14,13 @@ define("RECIPE_URL", array(
     "gallery" => RECIPE_URL_STANDARD . "gallery&id="
 ));
 
+define("TIP_URL_STANDARD", "tip?type=");
+define("TIP_URL", array(
+    "new" => TIP_URL_STANDARD . "new",
+    "view" => TIP_URL_STANDARD . "view&id=",
+    "edit" => TIP_URL_STANDARD . "edit&id=",
+));
+
 // Check logged usser
 function loggedIn() {
     if (isset($_SESSION["email"]) && $_SESSION["email"] != "") {
