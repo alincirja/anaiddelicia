@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-auto col-lg-2 col-xl-1">
-                        <a class="logo" href="<?php echo ROOT_PATH; ?>">
+                        <a class="logo" href="<?php echo ROOT_URL; ?>">
                             <span>ANAID</span>
                             <small>DELICIA</small>
                         </a>
