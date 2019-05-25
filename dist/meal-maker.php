@@ -167,7 +167,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="dish">Preparat</label>
-                                    <select name="dish" id="dish" class="form-control"></select>
+                                    <select name="dish" id="dish" class="form-control">
+                                        <option value="">-- selecteaza --</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">

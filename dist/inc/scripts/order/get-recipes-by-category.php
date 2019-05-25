@@ -7,7 +7,7 @@ if (!isset($_POST["action"])) {
         $recipeObj = new Recipe();
 
         $recipes = $recipeObj->getCustomData("SELECT * FROM recipes WHERE id_category='" . $_POST["category"] . "'");
-        $recipesOptions = "";
+        $recipesOptions = "<option val=''>-- selecteaza --</option>";
         foreach ($recipes as $recipe) {
             $recipesOptions .= '<option value="' . $recipe["id"] . '">' . $recipe["title"] . '</option>';
         }

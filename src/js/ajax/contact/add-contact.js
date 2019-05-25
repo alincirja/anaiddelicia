@@ -19,6 +19,9 @@ const addContact = () => {
                 console.log(data);
                 const dataJSON = JSON.parse(data);
                 $form.find(".feedback").append("<div class='alert alert-"+dataJSON.type+"'>"+dataJSON.msg+"</div>");
+                if (dataJSON.type === "success") {
+                    $form[0].reset();
+                }
                 util.spinner($form, "stop");
             },
             error: function(err) {

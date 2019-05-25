@@ -138,6 +138,29 @@ const setStatus = item => {
     return false;
 };
 
+const addToFavs = item => {
+    $.ajax({
+        url: $(item).attr("href"),
+        type: "POST",
+        data: {
+            "action": "addToFavs",
+            "user": $(item).attr("data-user"),
+            "recipe": $(item).attr("data-recipe")
+        },
+        success: res => {
+            const dataJSON = JSON.parse(res);
+            if (dataJSON.type === "success") {
+                location.reload();
+            } else {
+                $cache.FavContainer.append("<div class='invalid-feedback'>" + dataJSON.msg + "</div>");
+            }
+        },
+        error: err => {
+            console.log(err);
+        }
+    });
+}
+
 
 /** Initializare cache - salvare elemente DOM */
 const initCache = () => {
@@ -147,6 +170,8 @@ const initCache = () => {
     $cache.galleryInput = $("#galleryFile");
     $cache.galleryDelete = $(document).find(".delete-image");
     $cache.statusBtn = $(document).find(".set-status");
+    $cache.addFavsBtn = $(document).find(".add-to-favs");
+    $cache.FavContainer = $(document).find(".fav-container");
 };
 
 /** Initializare evenimente */
@@ -165,6 +190,10 @@ const initEvents = () => {
         setStatus(this);
     });
     $(".help-btn.remove").on("click", removeImg);
+    $cache.addFavsBtn.on("click", e => {
+        e.preventDefault();
+        addToFavs(e.target);
+    });
 };
 
 /** Call Initialization */

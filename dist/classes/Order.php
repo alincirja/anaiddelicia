@@ -8,25 +8,49 @@ class Order extends Database {
      * ADD ORDER
      */
     public function addNew($info) {
-        if (empty($info["eventType"]) || empty($info["eventDate"]) || empty($info["servingsNO"]) || empty($info["contactPerson"]) || empty($info["phone"]) || empty($info["locationName"])  || empty($info["locationAddress"]) || empty($info["details"]) || empty($info["appetizerStandard"]) || empty($info["appetizerCustom"]) || empty($info["firstTypeSteak"]) || empty($info["firstTypeSideDish"]) || empty($info["firstTipeSalad"]) || empty($info["secondType"]) || empty($info["desert"])) {            
-            $this->sendUserMsg("danger", "Completati toate campurile");
+
+        $requiredFields = array(
+            "eventType" => $info["eventType"],
+            "eventDate" => $info["eventDate"],
+            "servingsNo" => $info["servingsNo"],
+            "contactPerson" => $info["contactPerson"],
+            "phone" => $info["phone"],
+            "locationName" => $info["locationName"],
+            "locationAddress" => $info["locationAddress"],
+            "appetizerStandard" => $info["appetizerStandard"],
+            "firstTypeSteak" => $info["firstTypeSteak"],
+            "firstTypeSideDish" => $info["firstTypeSideDish"],
+            "firstTypeSalad" => $info["firstTypeSalad"],
+            "secondType" => $info["secondType"],
+            "desert" => $info["desert"]
+        );
+
+        $emptyVal = array();
+        foreach ($requiredFields as $required => $required_val) {
+            if (empty($required_val)) {
+                $emptyVal[] = $required;
+            }
+        }
+
+        if (count($emptyVal) > 0) {
+            $this->sendUserMsg("danger", "Completati toate campurile obligatorii", $emptyVal);
             exit();
         } else {
-            $sql = "INSERT INTO " . $this->table . " (event_type, event_date, servings_no, contact_person, phone, location_name, location_addrress, details, appetizer_standart, appetizer_custom, first_type_steak, first_type_side_dish, first_type_Salad, second_type, desert)
-             VALUES ('" . $info["event_type"] . "', '" .
-              $info["event_date"] .
-              $info["servings_no"] . "', '" .
-              $info["contact_person"] . "', '" .
+            $sql = "INSERT INTO " . $this->table . " (event_type, event_date, servings_no, contact_person, phone, location_name, location_address, details, appetizer_standard, appetizer_custom, first_type_steak, first_type_side_dish, first_type_salad, second_type, desert)
+             VALUES ('" . $info["eventType"] . "', '" .
+              $info["eventDate"] . "', '" .
+              $info["servingsNo"] . "', '" .
+              $info["contactPerson"] . "', '" .
               $info["phone"] . "', '" .
-              $info["location_name"] . "', '" .
-              $info["location_address"] . "', '" .
+              $info["locationName"] . "', '" .
+              $info["locationAddress"] . "', '" .
               $info["details"] . "', '" .
-              $info["appetizer_standard"] . "', '" .
-              $info["appetizer_custom"] . "', '" .
-              $info["first_type_steak"] . "', '" .
-              $info["first_type_side_dish"] . "', '" .
-              $info["first_type_salad"] . "', '" .
-              $info["second_type"] . "', '" .
+              $info["appetizerStandard"] . "', '" .
+              $info["appetizerCustom"] . "', '" .
+              $info["firstTypeSteak"] . "', '" .
+              $info["firstTypeSideDish"] . "', '" .
+              $info["firstTypeSalad"] . "', '" .
+              $info["secondType"] . "', '" .
               $info["desert"] . "')";
             $result = mysqli_query($this->connect, $sql);
             if ($result) {

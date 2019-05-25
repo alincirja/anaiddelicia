@@ -1,5 +1,5 @@
 <?php 
-$keyword = ""
+$keyword = "";
 if (isset($_POST["action"]) && $_POST["action"] === "liveSearch") {
     $keyword = $_POST["liveSearch"];
 } else {
