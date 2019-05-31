@@ -1,0 +1,31 @@
+#orderModal {
+    .modal-dialog {
+        max-width: 700px;
+    }
+}
+
+.order-details-list {
+    list-style: none;
+    padding: 0;
+
+    li {
+        display: flex;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba($black, .05);
+        transition: all .3s;
+
+        &:hover {
+            background-color: rgba($black, .03);
+            padding-left: 10px;
+        }
+
+        .data {
+            width: 150px;
+            padding-right: 10px;
+        }
+
+        .value {
+            color: $black;
+        }
+    }
+}

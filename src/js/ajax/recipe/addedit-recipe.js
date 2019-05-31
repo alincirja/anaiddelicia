@@ -161,6 +161,30 @@ const addToFavs = item => {
     });
 }
 
+const removeFav = item => {
+    const $item = $(item).closest("a.remove-fav");
+    $.ajax({
+        url: $item.attr("href"),
+        type: "POST",
+        data: {
+            "action": "removeFav",
+            "favId": $item.attr("data-id")
+        },
+        success: res => {
+            console.log(res);
+            const dataJSON = JSON.parse(res);
+            if (dataJSON.type === "success") {
+                location.reload();
+            } else {
+                $item.append("<div class='invalid-feedback'>" + dataJSON.msg + "</div>");
+            }
+        },
+        error: err => {
+            console.log(err);
+        }
+    });
+}
+
 
 /** Initializare cache - salvare elemente DOM */
 const initCache = () => {
@@ -172,6 +196,7 @@ const initCache = () => {
     $cache.statusBtn = $(document).find(".set-status");
     $cache.addFavsBtn = $(document).find(".add-to-favs");
     $cache.FavContainer = $(document).find(".fav-container");
+    $cache.removeFavBtn = $(document).find(".remove-fav");
 };
 
 /** Initializare evenimente */
@@ -193,6 +218,10 @@ const initEvents = () => {
     $cache.addFavsBtn.on("click", e => {
         e.preventDefault();
         addToFavs(e.target);
+    });
+    $(".remove-fav").on("click", e => {
+        e.preventDefault();
+        removeFav(e.target);
     });
 };
 

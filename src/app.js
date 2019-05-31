@@ -26,3 +26,4 @@ require('./js/ajax/tip/addedit-tip');
 require('./js/ajax/user/live-search');
 require('./js/ajax/category/addeditdelete');
 require('./js/ajax/contact/add-contact');
+require('./js/ajax/order/order');

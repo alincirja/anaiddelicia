@@ -36,7 +36,7 @@ class Database {
      * ACTION - READ
      */
     public function getData($table) {
-        $sql = "SELECT * FROM " . $table;
+        $sql = "SELECT * FROM " . $table . " ORDER BY id DESC";
         $array = array();
         $query = mysqli_query($this->connect, $sql);
 
