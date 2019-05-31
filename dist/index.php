@@ -15,7 +15,7 @@
 
     include "classes/Recipe.php";
     $action = new Database();
-    $recipes = $action->getData("recipes");
+    $recipes = $action->getCustomData("SELECT * FROM recipes WHERE status='aprobat' ORDER BY id DESC LIMIT 3");
 
 ?>
 <section id="main-content" class="pt-5 pb-4">

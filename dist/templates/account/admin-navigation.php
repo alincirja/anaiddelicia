@@ -27,6 +27,9 @@ function activeNavAdmin($sec) {
             <li><a href="?admin=tips" class="<?php activeNavAdmin("tips"); ?>">
                 Sfaturi Culinare
             </a></li>
+            <li><a href="?admin=orders" class="<?php activeNavAdmin("orders"); ?>">
+                Comenzi
+            </a></li>
         </ul>
     </div>
 </div>
