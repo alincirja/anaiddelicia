@@ -16,7 +16,8 @@
             <th></th>
         </tr>
     </thead>
-<?php foreach($myrecipes as $recipe) { ?>
+<?php if (count($myrecipes)) {
+    foreach($myrecipes as $recipe) { ?>
     <tr>
         <td><?php echo $recipe["title"]; ?></td>
         <td class="text-capitalize recipe-status text-<?php echo $recipe["status"]; ?>"><?php echo $recipe["status"]; ?></td>
@@ -26,5 +27,6 @@
             <a href="<?php echo RECIPE_URL["gallery"] . $recipe["id"]; ?>" class="btn btn-sm btn-warning">Galerie</a>
         </td>
     </tr>
-<?php } ?>
+<?php }
+    } ?>
 </table>
