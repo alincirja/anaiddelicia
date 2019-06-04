@@ -82,7 +82,7 @@
                 </div>
                 <div class="comments mb-3">
                     <h6>Comentarii admin</h6>
-                    <textarea name="adminDetails" id="adminDetails" class="form-control"><?php echo $order["details"]; ?></textarea>
+                    <textarea name="adminDetails" id="adminDetails" class="form-control"><?php echo $order["comments"]; ?></textarea>
                 </div>
                 <div class="status">
                     <div class="row">
@@ -101,7 +101,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="updateOrder" data-id="<?php echo $orderId; ?>">Save changes</button>
             </div>
         </div>
     </div>

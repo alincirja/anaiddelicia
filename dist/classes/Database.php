@@ -79,6 +79,26 @@ class Database {
         }
         return $array;
     }
+
+    public function updateEntry($table, $id, $fields) {
+        $set = "";
+        $i = 0;
+        foreach ($fields as $key => $value) {
+            $set .= $key . "='" . $value. "'";
+            $set .= ++$i === count($fields) ? "" : ", ";
+        }
+        $sql = "UPDATE " . $table . " SET " . $set . " WHERE id='" . $id . "'";
+        $query = mysqli_query($this->connect, $sql);
+         if ($query) {
+            return true;
+            exit();
+        } else {
+            $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
+            echo $sql;
+            return false;
+            exit();
+        }
+    }
     
     /**
      * ACTION - CREATE

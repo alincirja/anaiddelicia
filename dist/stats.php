@@ -39,7 +39,30 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Categorii Populare</h5>
+                            <?php
+                                $artsLabels = "";
+                                $artsVals = "";
+                                $orderedArticles = $action->getCustomData("SELECT category.name as cat_name, count(category.id_category) as nr FROM recipes, category WHERE recipes.id_category= id_category GROUP BY recipes.id_category");
+                                for ($i = count($orderedArticles) - 1; $i >= 0; $i--) {
+                                    if ($orderedArticles[$i]["nr"] > 2) {
+                                        $artsLabels .= $i > 0 ? $orderedArticles[$i]["cat_name"] ."," : $orderedArticles[$i]["cat_name"];
+                                        $artsVals .= $i > 0 ? $orderedArticles[$i]["nr"] ."," : $orderedArticles[$i]["nr"];
+                                    }
+                                }
+                            ?>
+                            <canvas id="chartCategories" width="400" height="400"
+                                data-labels="<?php echo $artsLabels; ?>"
+                                data-vals="<?php echo $artsVals; ?>"
+                            ></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 <?php
