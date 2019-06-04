@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $orderId = 0;
     if (isset($_GET["orderId"])) {
         $orderId = $_GET["orderId"];
@@ -80,6 +81,7 @@
                     <h6>Detalii</h6>
                     <p><?php echo $order["details"]; ?></p>
                 </div>
+                <?php if (isAdmin()) { ?>
                 <div class="comments mb-3">
                     <h6>Comentarii admin</h6>
                     <textarea name="adminDetails" id="adminDetails" class="form-control"><?php echo $order["details"]; ?></textarea>
@@ -98,6 +100,7 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

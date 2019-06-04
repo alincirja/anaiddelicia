@@ -39,6 +39,10 @@ function activeNav($sec) {
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a></li>
+            <li><a href="?section=orders" class="<?php activeNav("orders"); ?>">
+                <i class="far fa-fw fa-image"></i>
+                <span>Istoric Comenzi</span>
+            </a></li>
             <li><a href="?section=profile" class="<?php activeNav("profile"); ?>">
                 <i class="far fa-fw fa-user"></i>
                 <span>Modifica Profil</span>

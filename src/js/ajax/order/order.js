@@ -16,7 +16,7 @@ const viewOrder = order => {
         error: err => {
             console.log(err);
         }
-    })
+    });
 };
 
 /** Initializare cache - salvare elemente DOM */
@@ -27,6 +27,10 @@ const initCache = () => {
 const initEvents = () => {
     $(document).find(".view-order").on("click", e => {
         viewOrder(e.currentTarget);
+    });
+
+    $(document).on('hidden.bs.modal', "#orderModal", function () {
+        $(this).remove();
     });
 };
 

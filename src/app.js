@@ -27,3 +27,4 @@ require('./js/ajax/user/live-search');
 require('./js/ajax/category/addeditdelete');
 require('./js/ajax/contact/add-contact');
 require('./js/ajax/order/order');
+require('./js/ajax/order/messages');

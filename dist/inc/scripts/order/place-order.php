@@ -20,7 +20,8 @@ if (isset($_POST["action"]) && $_POST["action"] === "placeOrder") {
     $info["firstTypeSalad"] = mysqli_real_escape_string($order->connect, $_POST["salad"]);
     $info["secondType"] = mysqli_real_escape_string($order->connect, $_POST["dish"]);
     $info["desert"] = mysqli_real_escape_string($order->connect, $_POST["desert"]);
-    
+    $info["user"] = $_SESSION["id"];
+
     $order->addNew($info);
 } else {
     echo "Eroare: Not set";
