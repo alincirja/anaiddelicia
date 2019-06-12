@@ -44,17 +44,15 @@ class Database {
             while ($row = mysqli_fetch_assoc($query)) {
                 $array[] = $row;
             }
-            return $array;
-        } else {
-            echo "Nu exista date salvate";
         }
+        return $array;
     }
 
     public function getDataById($table, $id) {
         $sql = "SELECT * FROM " . $table . " WHERE id='" . $id . "'";
         $query = mysqli_query($this->connect, $sql);
 
-        if ($query->num_rows == 1) {
+        if ($query && $query->num_rows == 1) {
             return $row = mysqli_fetch_assoc($query);
         }
     }
@@ -72,7 +70,7 @@ class Database {
         $array = array();
         $query = mysqli_query($this->connect, $sql);
 
-        if ($query->num_rows > 0) {
+        if ($query && $query->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($query)) {
                 $array[] = $row;
             }

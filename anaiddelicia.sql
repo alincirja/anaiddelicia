@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: 127.0.0.1
--- Timp de generare: iun. 04, 2019 la 02:55 PM
+-- Timp de generare: iun. 12, 2019 la 10:37 AM
 -- Versiune server: 10.1.32-MariaDB
 -- Versiune PHP: 7.2.5
 
@@ -96,6 +96,76 @@ CREATE TABLE `cooking_tips` (
 -- --------------------------------------------------------
 
 --
+-- Structură tabel pentru tabel `events`
+--
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `date_from` date NOT NULL,
+  `time_from` time NOT NULL,
+  `date_to` date NOT NULL,
+  `time_to` time NOT NULL,
+  `signup_open` tinyint(1) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `details` longtext,
+  `id_winner` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Eliminarea datelor din tabel `events`
+--
+
+INSERT INTO `events` (`id`, `name`, `date_from`, `time_from`, `date_to`, `time_to`, `signup_open`, `enabled`, `details`, `id_winner`) VALUES
+(1, 'Dansul tocanitei', '2019-06-28', '16:00:00', '2019-06-30', '19:00:00', 1, 1, NULL, 0),
+(2, 'Alt Dans al tocanitei', '2019-06-28', '16:00:00', '2019-06-30', '19:00:00', 0, 1, NULL, 0),
+(3, 'Al treilea dans tocanitei', '2019-06-07', '16:00:00', '2019-06-08', '19:00:00', 0, 1, NULL, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `event_participants`
+--
+
+CREATE TABLE `event_participants` (
+  `id` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_recipe` int(11) NOT NULL,
+  `approved` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Eliminarea datelor din tabel `event_participants`
+--
+
+INSERT INTO `event_participants` (`id`, `id_event`, `id_user`, `id_recipe`, `approved`) VALUES
+(9, 1, 2, 32, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `event_votes`
+--
+
+CREATE TABLE `event_votes` (
+  `id` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL,
+  `id_participant` int(11) NOT NULL,
+  `id_recipe` int(11) NOT NULL,
+  `id_voter` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Eliminarea datelor din tabel `event_votes`
+--
+
+INSERT INTO `event_votes` (`id`, `id_event`, `id_participant`, `id_recipe`, `id_voter`) VALUES
+(8, 1, 2, 32, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Structură tabel pentru tabel `favorite_recipes`
 --
 
@@ -104,6 +174,13 @@ CREATE TABLE `favorite_recipes` (
   `id_user` int(11) NOT NULL,
   `id_recipe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Eliminarea datelor din tabel `favorite_recipes`
+--
+
+INSERT INTO `favorite_recipes` (`id`, `id_user`, `id_recipe`) VALUES
+(15, 3, 33);
 
 -- --------------------------------------------------------
 
@@ -323,6 +400,24 @@ ALTER TABLE `cooking_tips`
   ADD KEY `fk_users_cooking_tips` (`id_user`);
 
 --
+-- Indexuri pentru tabele `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `event_participants`
+--
+ALTER TABLE `event_participants`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `event_votes`
+--
+ALTER TABLE `event_votes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexuri pentru tabele `favorite_recipes`
 --
 ALTER TABLE `favorite_recipes`
@@ -401,10 +496,28 @@ ALTER TABLE `cooking_tips`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pentru tabele `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pentru tabele `event_participants`
+--
+ALTER TABLE `event_participants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pentru tabele `event_votes`
+--
+ALTER TABLE `event_votes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT pentru tabele `favorite_recipes`
 --
 ALTER TABLE `favorite_recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pentru tabele `images`

@@ -12,6 +12,7 @@ require('./js/navigation');
 require('./js/account');
 require('./js/recipe');
 require('./js/meal-maker');
+require('./js/event');
 
 /**
  * AJAX FUNCTIONS
