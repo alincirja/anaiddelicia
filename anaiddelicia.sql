@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: 127.0.0.1
--- Timp de generare: iun. 12, 2019 la 10:37 AM
+-- Timp de generare: iun. 16, 2019 la 07:06 PM
 -- Versiune server: 10.1.32-MariaDB
 -- Versiune PHP: 7.2.5
 
@@ -118,8 +118,7 @@ CREATE TABLE `events` (
 
 INSERT INTO `events` (`id`, `name`, `date_from`, `time_from`, `date_to`, `time_to`, `signup_open`, `enabled`, `details`, `id_winner`) VALUES
 (1, 'Dansul tocanitei', '2019-06-28', '16:00:00', '2019-06-30', '19:00:00', 1, 1, NULL, 0),
-(2, 'Alt Dans al tocanitei', '2019-06-28', '16:00:00', '2019-06-30', '19:00:00', 0, 1, NULL, 0),
-(3, 'Al treilea dans tocanitei', '2019-06-07', '16:00:00', '2019-06-08', '19:00:00', 0, 1, NULL, 3);
+(7, 'Dansul tocanitei 21', '2019-06-27', '12:31:00', '2019-06-27', '21:31:00', 0, 1, 'Instructiuni', 0);
 
 -- --------------------------------------------------------
 
@@ -238,7 +237,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `date`, `event_type`, `event_date`, `servings_no`, `contact_person`, `phone`, `location_name`, `location_address`, `details`, `appetizer_standard`, `appetizer_custom`, `first_type_steak`, `first_type_side_dish`, `first_type_salad`, `second_type`, `desert`, `status`, `comments`, `id_user`) VALUES
-(1, '2019-05-23 21:03:15', 'Zi de Nastere', '2019-05-31', 34, 'Alina', '08574856844', 'Acolo', 'dincolor, nr. 12', '', 31, '', 32, 33, 34, 30, 35, 'asteptare', '', 3),
+(1, '2019-05-23 21:03:15', 'Zi de Nastere', '2019-05-31', 34, 'Alina', '08574856844', 'Acolo', 'dincolor, nr. 12', '', 31, '', 32, 33, 34, 30, 35, 'asteptare', 'Detaliis', 3),
 (2, '2019-06-01 13:57:33', 'Nunta', '2019-07-06', 250, 'Ioan', '07873848540', 'Frumosu', 'Str. Principala, nr. 21', 'Detalii', 31, 'Discutam ulterior', 32, 33, 34, 30, 29, 'asteptare', '', 2);
 
 -- --------------------------------------------------------
@@ -499,7 +498,7 @@ ALTER TABLE `cooking_tips`
 -- AUTO_INCREMENT pentru tabele `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pentru tabele `event_participants`

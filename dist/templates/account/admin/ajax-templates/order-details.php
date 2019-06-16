@@ -24,7 +24,7 @@
 
 <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" data-id="<?php echo $order["id"]; ?>">
             <div class="modal-header">
                 <h5 class="modal-title" id="orderModalLabel">Comanda #<?php echo $order["id"] . " | " . $order["date"] . " | " . $order["status"]; ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -84,7 +84,7 @@
                 <?php if (isAdmin()) { ?>
                 <div class="comments mb-3">
                     <h6>Comentarii admin</h6>
-                    <textarea name="adminDetails" id="adminDetails" class="form-control"><?php echo $order["details"]; ?></textarea>
+                    <textarea name="adminDetails" id="adminDetails" class="form-control"><?php echo $order["comments"]; ?></textarea>
                 </div>
                 <div class="status">
                     <div class="row">
@@ -103,8 +103,8 @@
                 <?php } ?>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Anulare</button>
+                <button type="button" class="btn btn-primary update-order">Salvare</button>
             </div>
         </div>
     </div>

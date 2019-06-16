@@ -26,16 +26,16 @@
                     </div>
                     <div class="col-auto">
                         <h6 class="m-0">Public</h6>
-                        <input type="checkbox" <?php echo $event["enabled"] ? "checked" : ""; ?> />
+                        <input type="checkbox" class="public-event-check" data-event="<?php echo $event["id"]; ?>" <?php echo $event["enabled"] ? "checked" : ""; ?> />
                     </div>
                     <div class="col">
-                        <button class="btn btn-sm btn-info"><i class="fas fa-fw fa-user"></i></button>
+                        <button class="btn btn-sm btn-info getEventParts" data-id="<?php echo $event["id"]; ?>"><i class="fas fa-fw fa-user"></i></button>
                         <button class="btn btn-sm btn-warning getEventModal" data-action="editEvent" data-id="<?php echo $event["id"]; ?>"><i class="fas fa-fw fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-fw fa-trash"></i></button>
+                        <button class="btn btn-sm btn-danger delete-event" data-event="<?php echo $event["id"]; ?>"><i class="fas fa-fw fa-trash"></i></button>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div><!--/.row-->
+            </div><!-- /.card-body-->
+        </div><!--/.card-->
     </li>
 <?php } ?>
 </ul>
