@@ -14,7 +14,7 @@
                                     <?php include_once("searchform.php"); ?>
                                 </li>
                                 <?php if (loggedIn()) { ?>
-                                <li data-toggle="tooltip" data-placement="bottom" title="Retete Favorite"><a href="#" class="favorite"><i class="far fa-fw fa-heart"></i></a></li>
+                                <li data-toggle="tooltip" data-placement="bottom" title="Retete Favorite"><a href="<?php echo ROOT_PATH; ?>account?section=favrecipes" class="favorite"><i class="far fa-fw fa-heart"></i></a></li>
                                 <li data-toggle="tooltip" data-placement="bottom" title="Contul Meu"><a href="<?php echo ROOT_PATH; ?>account?section=orders"><i class="fas fa-fw fa-user"></i></a></li>
                                 <li data-toggle="tooltip" data-placement="bottom" title="Iesire"><a href="inc/scripts/user/logout?session=end" class="logout"><i class="fas fa-fw fa-sign-out-alt"></i></i></a></li>
                                 <?php } else { ?>

@@ -3,21 +3,6 @@
     $action = new Database();
     $orders = $action->getData("orders");
 ?>
-<div class="order-search mb-3">
-    <div class="row">
-        <div class="col-12 col-sm-4 col-lg-3">
-            <input class="form-control" type="text" name="searchType" id="searchType" placeholder="nume, telefon" />
-        </div>
-        <div class="col-12 col-sm-4 col-lg-3">
-            <select class="form-control" name="orderStatus" id="orderStatus">
-                <option value="">-- status --</option>
-                <?php foreach ($orders as $order) { ?>
-                    <option value="<?php echo $order["status"]; ?>"><?php echo $order["status"]; ?></option>
-                <?php } ?>
-            </select>
-        </div>
-    </div>
-</div><!--/.order-search-->
 <div class="order-list">
     <table class="table table-striped">
         <thead>

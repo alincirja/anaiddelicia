@@ -105,8 +105,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Anulare</button>
                 <button type="button" class="btn btn-primary update-order">Salvare</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="updateOrder" data-id="<?php echo $orderId; ?>">Save changes</button>
             </div>
         </div>
     </div>
