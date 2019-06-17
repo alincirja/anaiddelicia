@@ -77,7 +77,7 @@ class Database {
         }
         return $array;
     }
-    
+
     /**
      * ACTION - CREATE
      */

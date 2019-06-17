@@ -61,7 +61,6 @@ const initEvents = () => {
     });
 
     $(document).on("click", ".update-order", e => {
-        console.log("asd")
         updateOrder(e.target);
     });
 };

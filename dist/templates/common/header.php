@@ -14,7 +14,7 @@
                                     <?php include_once("searchform.php"); ?>
                                 </li>
                                 <?php if (loggedIn()) { ?>
-                                <li data-toggle="tooltip" data-placement="bottom" title="Retete Favorite"><a href="#" class="favorite"><i class="far fa-fw fa-heart"></i></a></li>
+                                <li data-toggle="tooltip" data-placement="bottom" title="Retete Favorite"><a href="<?php echo ROOT_PATH; ?>account?section=favrecipes" class="favorite"><i class="far fa-fw fa-heart"></i></a></li>
                                 <li data-toggle="tooltip" data-placement="bottom" title="Contul Meu"><a href="<?php echo ROOT_PATH; ?>account?section=orders"><i class="fas fa-fw fa-user"></i></a></li>
                                 <li data-toggle="tooltip" data-placement="bottom" title="Iesire"><a href="inc/scripts/user/logout?session=end" class="logout"><i class="fas fa-fw fa-sign-out-alt"></i></i></a></li>
                                 <?php } else { ?>
@@ -43,7 +43,9 @@
                             <ul class="list-unstyled nav-list">
                                 <li><a href="<?php echo ROOT_PATH . "category"; ?>">Retete</a></li>
                                 <li><a href="<?php echo ROOT_PATH . "tip"; ?>">Sfaturi Culinare</a></li>
+                                <li><a href="<?php echo ROOT_URL . "stats"; ?>">Statistici</a></li>
                                 <li><a href="<?php echo ROOT_URL . "meal-maker"; ?>">Comanda</a></li>
+                                <li><a href="<?php echo ROOT_URL . "about"; ?>">Despre</a></li>
                                 <?php if (loggedIn()) { ?>
                                     <li><a href="<?php echo ROOT_URL . "events"; ?>">Evenimente</a></li>
                                 <?php } ?>
