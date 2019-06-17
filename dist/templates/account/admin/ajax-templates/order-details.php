@@ -84,7 +84,7 @@
                 <?php if (isAdmin()) { ?>
                 <div class="comments mb-3">
                     <h6>Comentarii admin</h6>
-                    <textarea name="adminDetails" id="adminDetails" class="form-control"><?php echo $order["comments"]; ?></textarea>
+                    <textarea name="adminDetails" id="adminDetails" class="form-control"><?php echo $order["details"]; ?></textarea>
                 </div>
                 <div class="status">
                     <div class="row">
@@ -105,6 +105,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Anulare</button>
                 <button type="button" class="btn btn-primary update-order">Salvare</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
