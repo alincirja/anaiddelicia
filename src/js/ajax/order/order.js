@@ -16,33 +16,34 @@ const viewOrder = order => {
         error: err => {
             console.log(err);
         }
-    })
+    });
 };
 
 const updateOrder = order => {
-    const $this = $(order);
-    const $modal = $this.closest(".modal-content");
-    $modal.find(".alert").remove();
+    const $this = $(order).closest(".modal-content");
+    util.spinner($this, "start");
+    const id = $this.attr("data-id");
+    const data = {
+        "action": "updateOrder",
+        "orderId": id,
+        "comments": $this.find("#adminDetails").val(),
+        "status": $this.find("#orderStatus").val()
+    };
+
     $.ajax({
-        url: "inc/scripts/order/update-order.php",
+        url: "inc/scripts/order/update.php",
         type: "POST",
-        data: {
-            "comments": $modal.find("#adminDetails").val(),
-            "status": $modal.find("#orderStatus").val(),
-            "orderID": $this.attr("data-id"),
-            "action": "updateOrder"
-        },
+        data: data,
         success: res => {
-            const datajs = JSON.parse(res);
-            $modal.append(`<div class="mx-3 alert alert-${datajs.type}">${datajs.msg}</div>`);
-            setTimeout(() => {
-                $modal.find(".alert").remove();
-            }, 5000);
+            console.log(res);
         },
         error: err => {
-            console.log(err);
+            console.log(err)
+        },
+        complete: () => {
+            util.spinner($this, "stop");
         }
-    })
+    });
 }
 
 /** Initializare cache - salvare elemente DOM */
@@ -55,8 +56,12 @@ const initEvents = () => {
         viewOrder(e.currentTarget);
     });
 
-    $(document).on("click", "#updateOrder", e => {
-        updateOrder(e.currentTarget);
+    $(document).on('hidden.bs.modal', "#orderModal", function () {
+        $(this).remove();
+    });
+
+    $(document).on("click", ".update-order", e => {
+        updateOrder(e.target);
     });
 };
 

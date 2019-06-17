@@ -29,3 +29,41 @@
         }
     }
 }
+
+.order-messages-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px;
+    overflow: auto;
+
+    li {
+        display: flex;
+
+        + li {
+            margin-top: 5px;
+        }
+
+        span {
+            display: block;
+            padding: 3px 7px;
+            border-radius: 5px;
+            max-width: 85%;
+        }
+
+        &.other {
+            span {
+                background-color: rgba($black, .03);
+            }
+        }
+
+        &.mine {
+            justify-content: flex-end;
+
+            span {
+                background-color: $primary;
+                color: $white;
+            }
+        }
+    }
+}

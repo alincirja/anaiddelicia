@@ -30,10 +30,8 @@ class Recipe extends Database {
             while ($row = mysqli_fetch_assoc($query)) {
                 $array[] = $row;
             }
-            return $array;
-        } else {
-            echo "Nu ati adaugat nicio reteta";
         }
+        return $array;
     }
 
     /**
@@ -48,7 +46,6 @@ class Recipe extends Database {
             while ($row = mysqli_fetch_assoc($query)) {
                 $array[] = $row;
             }
-            
         }
         return $array;
     }
@@ -158,7 +155,7 @@ class Recipe extends Database {
                     exit();
                 }
             } elseif ($info["action"] === "editRecipe" && $info["recipeId"] != 0) {
-                $currentImage;
+                $currentImage = null;
                 $getCurrentImage = mysqli_query($this->connect, "SELECT image FROM " . $this->table . " WHERE id='" . $info["recipeId"] . "'");
                 if ($getCurrentImage->num_rows == 1) {
                     $currentImage = mysqli_fetch_assoc($getCurrentImage);

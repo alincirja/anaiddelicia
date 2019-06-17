@@ -44,17 +44,15 @@ class Database {
             while ($row = mysqli_fetch_assoc($query)) {
                 $array[] = $row;
             }
-            return $array;
-        } else {
-            echo "Nu exista date salvate";
         }
+        return $array;
     }
 
     public function getDataById($table, $id) {
         $sql = "SELECT * FROM " . $table . " WHERE id='" . $id . "'";
         $query = mysqli_query($this->connect, $sql);
 
-        if ($query->num_rows == 1) {
+        if ($query && $query->num_rows == 1) {
             return $row = mysqli_fetch_assoc($query);
         }
     }
@@ -72,7 +70,7 @@ class Database {
         $array = array();
         $query = mysqli_query($this->connect, $sql);
 
-        if ($query->num_rows > 0) {
+        if ($query && $query->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($query)) {
                 $array[] = $row;
             }
@@ -121,8 +119,7 @@ class Database {
     /**
      * ACTION - DELETE BY ID
      */
-
-     public function deleteById($table, $id) {
+    public function deleteById($table, $id) {
         $sql = "DELETE FROM " . $table . " WHERE id='" . $id . "'";
         $query = mysqli_query($this->connect, $sql);
         if ($query) {
@@ -132,6 +129,27 @@ class Database {
             $this->sendUserMsg("danger", "Eroare BD: " . mysqli_error($this->connect));
             exit();
         }
-     }
+    }
+
+    /**
+     * UPDATE ENTRY
+     */
+    public function updateEntry($table, $id, $fields) {
+        $set = "";
+        $i = 0;
+        foreach ($fields as $key => $value) {
+            $set .= $key . "='" . $value . "'";
+            $set .= ++$i === count($fields) ? "" : ", ";
+        }
+        $sql = "UPDATE " . $table . " SET " . $set . " WHERE id='" . $id . "'";
+        $query = mysqli_query($this->connect, $sql);
+        if ($query) {
+            $this->sendUserMsg("success", "Inregistrarea a fost actualizata.");
+            exit();
+        } else {
+            $this->sendUserMsg("danger", "Eroare BD " . mysqli_error($this->connect));
+            exit();
+        }
+    }
 }
 ?>

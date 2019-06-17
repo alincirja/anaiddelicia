@@ -1,0 +1,20 @@
+.card {
+    &-body {
+        position: relative;
+    }
+
+    .voted {
+        display: block;
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        border: 2px solid $primary;
+        border-radius: 50%;
+        transform: rotate(30deg) translateY(-50%);
+        text-transform: uppercase;
+        line-height: 41px;
+        text-align: center;
+        top: 50%;
+        right: 25px;
+    }
+}

@@ -13,6 +13,7 @@ require('./js/account');
 require('./js/recipe');
 require('./js/meal-maker');
 require('./js/charts');
+require('./js/event');
 
 /**
  * AJAX FUNCTIONS
@@ -28,3 +29,4 @@ require('./js/ajax/user/live-search');
 require('./js/ajax/category/addeditdelete');
 require('./js/ajax/contact/add-contact');
 require('./js/ajax/order/order');
+require('./js/ajax/order/messages');

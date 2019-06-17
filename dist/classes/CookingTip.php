@@ -22,7 +22,7 @@ class CookingTip extends Database {
             " SET title='" . $info["title"] . 
                     "', body='" . $info["body"] . 
                     "', id_user='" . $info["id_user"] . 
-                    "', status='asteptare' WHERE id=" . $info["tipId"];
+                    "' WHERE id=" . $info["tipId"];
                     $result = mysqli_query($this->connect, $sql);
                     if ($result) {
                         $this->sendUserMsg("success", "Sfatul culnar  a fost actualizat cu succes");
@@ -47,10 +47,10 @@ class CookingTip extends Database {
                     exit();
                 }
             } else {
-                $this->sendUserMsg("danger", "Campurile sunt obligatorii", $info);
+                $this->sendUserMsg("danger", "Campurile sunt obligatorii");
                 exit();
             }
         }
-    }     
+    }
 }
 ?>
