@@ -220,11 +220,13 @@
                         </li>
                     </ul>
                     <div class="fav-container pt-3">
-                    <?php if ($recipe->isFav($_SESSION["id"], $myrecipe["id"])) { ?>
+                    <?php if (loggedIn()) {
+                        if ($recipe->isFav($_SESSION["id"], $myrecipe["id"])) { ?>
                         <div class="text-success">Reteta este in lista de favorite</div>
                     <?php } else { ?>
                         <a href="<?php echo ROOT_PATH . "inc/scripts/recipe/favorite";?>" data-user="<?php echo $_SESSION["id"]; ?>" data-recipe="<?php echo $myrecipe["id"]; ?>" class="btn btn-block btn-sm btn-primary add-to-favs"><i class="fas fa-heart"></i> Adauga la Retete Favorite</a>
-                    <?php } ?>
+                    <?php }
+                    } ?>
                     </div>
                 </div><!--/.card-body-->
             </div><!--/.card-->

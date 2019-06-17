@@ -9,7 +9,7 @@ if (isset($_POST["action"])) {
     $info["body"] = mysqli_real_escape_string($tips->connect, $_POST["tipBody"]);
     $info["id_user"] =  $_SESSION["id"];
     $info["action"] = mysqli_real_escape_string($tips->connect, $_POST["action"]);
-    $info["tipId"] = isset($_POST["tipId"]) ? mysqli_real_escape_string($tips->connect, $_POST["tipId"]) : 0;
+    $info["tipId"] = isset($_POST["id"]) ? mysqli_real_escape_string($tips->connect, $_POST["id"]) : 0;
 
     //print_r($info);
     $tips->addEditTip($info);

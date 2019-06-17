@@ -8,17 +8,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <a href="#" class="btn-orders">Comenzi</a>
-                        </div>
-                        <div class="col">
                             <ul class="list-unstyled user-nav">
-                                <li class="searchformcontainer">
+                                <li class="searchformcontainer d-none">
                                     <a href="#"><i class="fas fa-fw fa-search"></i></a>
                                     <?php include_once("searchform.php"); ?>
                                 </li>
                                 <?php if (loggedIn()) { ?>
                                 <li data-toggle="tooltip" data-placement="bottom" title="Retete Favorite"><a href="#" class="favorite"><i class="far fa-fw fa-heart"></i></a></li>
-                                <li data-toggle="tooltip" data-placement="bottom" title="Contul Meu"><a href="<?php echo ROOT_PATH; ?>account"><i class="fas fa-fw fa-user"></i></a></li>
+                                <li data-toggle="tooltip" data-placement="bottom" title="Contul Meu"><a href="<?php echo ROOT_PATH; ?>account?section=orders"><i class="fas fa-fw fa-user"></i></a></li>
                                 <li data-toggle="tooltip" data-placement="bottom" title="Iesire"><a href="inc/scripts/user/logout?session=end" class="logout"><i class="fas fa-fw fa-sign-out-alt"></i></i></a></li>
                                 <?php } else { ?>
                                 <li data-toggle="tooltip" data-placement="bottom" title="Autentificare"><a data-toggle="modal" data-target="#loginModal" href="#" class="login"><i class="far fa-fw fa-user"></i></a></li>

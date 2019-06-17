@@ -15,9 +15,9 @@ $adminNav = array(
     "recipes" => "Retete",
     "categories" => "Categorii",
     "users" => "Utilizatori",
-    "tips" => "Sfaturi Culinare",
     "orders" => "Comenzi",
-    "events" => "Evenimente"
+    "events" => "Evenimente",
+    "contact" => "Contact"
 );
 ?>
 <div class="card">

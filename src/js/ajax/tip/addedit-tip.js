@@ -3,66 +3,51 @@
 import $ from "jquery";
 import * as util from "../../utils";
 
-const $cache = {};
+/** Initializare evenimente */
+const initEvents = () => {
+    $(document).on('show.bs.modal', "#tipModal", function (e) {
+        const $btn = $(e.relatedTarget);
+        const modal = $(this);
+        $.get("templates/tip/get-tip.php?action=getTip&id=" + $btn.attr("data-id"), res => {
+            const resJSON = JSON.parse(res);
+            modal.find(".modal-title").text(resJSON.type);
+            modal.find(".modal-body p").text(resJSON.msg);
+        });
+    });
 
-const addeditTip = () => {
-    const $form = $cache.addeditTipForm;
-    $form.on("submit", e => {
+    $(document).on("click", ".tip-edit", e => {
+        const $this = $(e.target);
+        const form  = $("#tipForm");
+        form.find("#tipTitle").val($this.attr("data-title"));
+        form.find("#tipBody").val($this.attr("data-body"));
+        form.find("[name=id]").val($this.attr("data-id"));
+        form.find("[name=action]").val("editTip");
+    });
+
+    $(document).on("click", ".tip-form-reset", e => {
+        const form  = $("#tipForm");
+        form.find("[name=id]").val("");
+        form.find("[name=action]").val("newTip");
+        form.find(".alert").remove();
+    });
+
+    $("#tipForm").on("submit", e => {
         e.preventDefault();
-        util.spinner($form, "start");
-        $form.find(".alert").remove();
+        $(e.target).find(".alert").remove();
         $.ajax({
             url: "inc/scripts/tip/addedit-tip.php",
             type: "POST",
-            data: $form.serialize(),
-            success: function(data) {
-                console.log(data);
-                const dataJSON = JSON.parse(data);
-                $form.append("<div class='alert alert-"+dataJSON.type+"'>"+dataJSON.msg+"</div>");
-                util.spinner($form, "stop");
+            data: $(e.target).serialize(),
+            success: res => {
+                const dataJSON = JSON.parse(res);
+                $(e.target).find(".buttons-feedback").append(`<div class="mt-2 alert alert-${dataJSON.type}">${dataJSON.msg}</div>`);
             },
-            error: function(err) {
+            error: err => {
                 console.log(err);
-                util.spinner($form, "stop");
             }
         });
     });
 };
 
-const setStatus = item => {
-    const data = {
-        "action": "setStatus"
-    }
-    $.ajax({
-        url: $(item).attr("href"),
-        type: "POST",
-        data: data,
-        success: function(data) {
-            const dataJSON = JSON.parse(data);
-            if (dataJSON.type === "success") {
-                location.reload();
-            } else {
-                $(item).closest(".card-body").append("<div class='alert mt-2 alert-"+dataJSON.type+"'>"+dataJSON.msg+"</div>");
-            }
-        },
-        error: function(err) {
-            console.log(err);
-        }
-    });
-    return false;
-};
-
-/** Initializare cache - salvare elemente DOM */
-const initCache = () => {
-    $cache.addeditTipForm = $("#addEditTipForm");
-    $cache.statusBtn = $(document).find(".set-status");
-};
-
-/** Initializare evenimente */
-const initEvents = () => {
-    addeditTip();
-};
-
 /** Call Initialization */
-initCache();
 initEvents();
